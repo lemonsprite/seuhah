@@ -12,10 +12,10 @@
                     <div class="text-center">
                         <h1 class="font-bold text-2xl mb-2">Kedai Seuhah</h1>
                         <p class="text-lg">Masuk dengan akun anda.</p>
-                    </div>
-                    <form method="POST" action="<?= base_url('login') ?>" class="mt-10">
+                        <?=$this->session->flashdata('pesan');?>
+                    <form method="POST" action="<?= base_url('proses/masuk') ?>" class="mt-10">
                         <div>
-                            <input type="email" placeholder="Email" class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 focus:outline-none px-4">
+                            <input name='email' type="email" placeholder="Email" class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 focus:outline-none px-4">
                         </div>
 
                         <div class="mt-7">
@@ -51,7 +51,7 @@
                         <div class="mt-7">
                             <div class="flex justify-center items-center">
                                 <label class="mr-2">Belum punya akun? </label>
-                                <a href="<?= base_url('auth/register') ?>"
+                                <a href="<?= base_url('register') ?>"
                                     class=" text-blue-500 transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
                                     Klik disini.
                                 </a>
