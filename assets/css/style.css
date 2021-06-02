@@ -1,0 +1,35 @@
+
+
+.kelompok ul li::after {
+    content: '|';
+    margin: 0 1rem;
+}
+.kelompok ul li:last-child::after {
+    content: ''  !important;
+}
+.cart-wrap {
+    height: 50%;
+    overflow-y: auto;
+}
+.overlay {
+    background: rgba(0,0,0,.5);
+    content: ' ';
+}
+
+a:hover i {
+    color: rgb(13, 152, 92);
+}
+
+a:hover > .tooltip {
+    display: block;
+}
+
+li.aktif {
+    background-color: white;
+    border-radius: .8rem;
+    padding: .6rem 0;
+    box-shadow: 0 0 5px rgba(0,0,0,.1);
+}
+li.aktif a {
+    padding-left: 10px;
+}
