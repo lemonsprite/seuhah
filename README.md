@@ -4,6 +4,17 @@
 
 <p align='center'>Ini adalah aplikasi web yang dibuat menggunakan framework Codeigniter dan Tailwind CSS dan Bootstrap sebagai CSS framewok.</p>
 
+<br>
+
+### Fitur Aplikasi
+- Autentikasi (Login/Daftar)
+- Keranjang Belanja
+- Dashboard Admin
+- Cekout Pembayaran
+- Landing Page
+
+<br>
+
 <p align='center'>Projek ini dibuat untuk memenuhi tugas akhir Web Programming III - Kelompok 8 (12.4B.17) UBSI Tasikmalaya.</p>
 
 ### Kelompok 8
