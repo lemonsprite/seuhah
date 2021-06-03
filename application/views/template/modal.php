@@ -10,9 +10,8 @@
                     <li class="flex items-center justify-between p-1 mb-1">
                         <h4 class="font-bold text-md">Item #001</h4>
                         <div class="flex">
-                            <button class="focus:outline-none px-3 pb-1 rounded-md bg-green-500"><i class="fas fa-plus text-xs text-white"></i></button>
                             <h6 class="px-5 item-count">0</h6>
-                            <button class="focus:outline-none px-3 pb-1 rounded-md bg-green-500"><i class="fas fa-minus text-xs text-white"></i></button>
+                            <h6 class="px-5 subtotal">0</h6>
                             <button class="ml-2 focus:outline-none px-3 pb-1 rounded-md bg-red-500"><i class="fas fa-trash text-xs text-white"></i></button>
                         </div>
                     </li>
