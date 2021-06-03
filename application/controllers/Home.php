@@ -3,11 +3,11 @@
 class Home extends CI_Controller
 {
 
-
+    /** 
+     * Tampilan default Kontroller Home (Landing Page)
+     */
     public function index()
     {
-
-        //asd
         $data = array(
             'title' => 'Home'
         );
