@@ -2,14 +2,14 @@
 
 class AuthModel extends CI_Model
 {
-    public function auth($data)
+    public function auth(array $data)
     {
-        $data = $this->db->get_where('users',$data);
-        if($data->num_rows() > 0)
+        $record = $this->db->get_where('users',$data);
+        if($record->num_rows() > 0)
         {
-            return $data;
+            return $record;
         } else {
-            return $data;
+            return false;
         }
     }
 }
