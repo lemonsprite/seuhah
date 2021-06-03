@@ -32,14 +32,6 @@
                                 <span class="ml-4">Profil Saya</span>
                             </a>
                         </li>
-                        <?php
-                        if($_SESSION['role'] == 1)
-                        {
-                            echo var_dump($_SESSION['role']);
-                            echo '<li><a href="<?= base_url('.base_url('admin/dashboard').') ?>" class="py-2 px-3 flex items-center hover:bg-gray-200 rounded-md"><i class="fas fa-user"></i><span class="ml-4">Dashboard</span></a></li>';
-                        }
-
-                        ?>
                         <li>
                             <a href="<?= base_url('logout') ?>" class="py-2 px-3 flex items-center hover:bg-gray-200 rounded-md">
                                 <i class="fas fa-sign-out-alt"></i>

@@ -8,10 +8,5 @@ class Admin extends CI_Controller
     public function index()
     {
         // Dashboard
-        $data = array(
-            'title' => 'Dashboard',
-
-        );
-        $this->load->view('template/admin/adm.head.php', $data);
     }
 }

@@ -32,19 +32,20 @@ class Auth extends CI_Controller
     /**
      * Fungsi Proses Login
      */
-    public function log($data = 'login')
+    public function log($data = 'masuk')
     {
         switch ($data) {
             default:
                 // Login eksekusi
                 // database tabel user belum ada
                 $data = array(
-                    'email' => trim($this->input->post('email')),
-                    'pass' => md5($this->input->post('password'))
+                    'email' => $this->input->post('email')
                 );
 
+                $pwd = $this->input->post('password');
                 $callback = $this->AuthModel->auth($data);
                 
+                // return var_dump($callback->row_array());
 
                 if ($callback == false) {
                     // Login Gagal
@@ -60,20 +61,21 @@ class Auth extends CI_Controller
                     $time = 3600 * 12;
 
                     $user = $callback->row_array();
-                    $sess = array(
-                        'username' => $user['email'],
-                        'role' => (int)$user['role'],
-                        'status' => TRUE
-                    );
-                    $this->session->set_userdata($sess);
-                    $this->session->mark_as_temp(array('username', 'status'), $time);
-
-                    if ($_SESSION['status'] == true) {
-                        redirect(base_url('home'));
-                    } else {
-                        // redirect(base_url('login'));
-                        echo var_dump($callback->row_array);
+                    if(password_verify($pwd, $user['pass']))
+                    {
+                        $sess = array(
+                            'username' => $user['email'],
+                            'role' => $user['role'],
+                            'status' => TRUE
+                        );
+                        $this->session->set_userdata($sess);
+                        $this->session->mark_as_temp(array('username', 'status'), $time);
+    
+                        if ($_SESSION['status'] == true) {
+                            redirect(base_url('home'));
+                        }
                     }
+                    redirect(base_url('login'));
                 }
                 break;
             case 'daftar':
@@ -143,15 +145,14 @@ class Auth extends CI_Controller
                         'nama_depan' => strip_tags($this->input->post('nama_depan')),
                         'nama_belakang' => strip_tags($this->input->post('nama_belakang')),
                         'email' => strip_tags($this->input->post('email')),
-                        'pass' => md5(strip_tags($this->input->post('password'))),
+                        'pass' => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
                         'role' => 1,
                         'tgl_edit' => $date->getTimestamp(),
                         'tgl_buat' => $date->getTimestamp()
                     );
                     
                     $this->UserModel->add_user($data);
-                    $this->session->set_flashdata('pesan', '<div class="bg-blue-200 p-4 mt-2">Akun anda berhasil dibuat!</div>
-                    </div>');
+                    $this->session->set_flashdata('pesan', '<div class="bg-blue-200 p-4 mt-2">Akun anda berhasil dibuat!</div></div>');
                     redirect(base_url('login'));
                 }
                 break;
