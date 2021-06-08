@@ -27,9 +27,10 @@
                 <div class="dropdown bg-white shadow-lg text-black absolute top-full mt-2 rounded-md right-0 py-3 px-4 hidden">
                     <ul class="text-left">
                         <li>
-                            <a href="#" class="py-2 px-3 grid items-center hover:bg-gray-200 rounded-md">
 
-                                <span >Profil Saya</span>
+                            <a href="<?= base_url('myprofile') ?>" class="py-2 px-3 flex items-center hover:bg-gray-200 rounded-md">
+                                <i class="fas fa-user"></i>
+                                <span class="ml-4">Profil Saya</span>
                             </a>
                         </li>
                         <?php

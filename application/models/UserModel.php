@@ -16,4 +16,5 @@ class UserModel extends CI_Model
     {
         $this->db->insert('users', $data);
     }
+
 }
