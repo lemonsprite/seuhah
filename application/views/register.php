@@ -11,7 +11,7 @@
                         <p class="text-lg">Buat akun milik anda sendiri.</p>
                     </div>
                     <form method="post" action="<?= base_url('proses/daftar') ?>" class="mt-10">
-
+//contoh
                         <div class="grid grid-cols-2 gap-2">
                             <input name='nama_depan' value="<?= set_value('nama_depan') ?>" type="text" placeholder="Nama Depan" class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 focus:outline-none px-4">
                             <input name='nama_belakang' value="<?= set_value('nama_belakang') ?>" type="text" placeholder="Nama Belakang" class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 focus:outline-none px-4">
