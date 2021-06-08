@@ -63,6 +63,8 @@ $route['register'] = 'Auth/register';
 $route['logout'] = 'Auth/logout';
 $route['proses/(:any)'] = 'Auth/log/$1';
 
+$route['admin/dashboard'] = 'Admin';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

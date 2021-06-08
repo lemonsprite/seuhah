@@ -24,18 +24,28 @@
                 ?>
 
                 
-                <div class="dropdown bg-white shadow-md text-black absolute top-full mt-2 rounded-md right-0 py-3 px-4 hidden">
+                <div class="dropdown bg-white shadow-lg text-black absolute top-full mt-2 rounded-md right-0 py-3 px-4 hidden">
                     <ul class="text-left">
                         <li>
+
                             <a href="<?= base_url('myprofile') ?>" class="py-2 px-3 flex items-center hover:bg-gray-200 rounded-md">
                                 <i class="fas fa-user"></i>
                                 <span class="ml-4">Profil Saya</span>
                             </a>
                         </li>
+                        <?php
+                        if($_SESSION['role'] == 1)
+                        {
+                            echo '<li>
+                                <a href="'.base_url('admin/dashboard').'" class="py-2 px-3 grid items-center hover:bg-gray-200 rounded-md">
+                                    <span >Dashboard</span>
+                                </a>
+                            </li>';
+                        }
+                        ?>
                         <li>
-                            <a href="<?= base_url('logout') ?>" class="py-2 px-3 flex items-center hover:bg-gray-200 rounded-md">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <span class="ml-4">Logout</span>
+                            <a href="<?= base_url('logout') ?>" class="py-2 px-3 grid items-center hover:bg-gray-200 rounded-md">
+                                <span>Logout</span>
                             </a>
                         </li>
                     </ul>
