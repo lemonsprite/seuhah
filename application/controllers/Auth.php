@@ -185,6 +185,7 @@ class Auth extends CI_Controller
        $user = $this->UserModel->get_user([ 'email' => $this->session->userdata('username')])->row_array();
         foreach($user as $a) {
             $data = [   
+            'id' => $user['id_user'],
             'nama_depan' => $user['nama_depan'],
             'nama_belakang' => $user['nama_belakang'],
             'email' => $user['email'],
@@ -204,13 +205,23 @@ class Auth extends CI_Controller
             $this->load->view('user/ubah_profil', $data);
 
         }else{
-            $namadepan = $this->input->post('nama_depan', true);
-            $namabelakang = $this->input->post('nama_belakang', true);
-            $email = $this->input->post('email', true);
+            // $namadepan = $this->input->post('nama_depan', true);
+            // $namabelakang = $this->input->post('nama_belakang', true);
+            // $email = $this->input->post('email', true);
 
-            $this->db->set('nama_depan', $namadepan);
-            $this->db->set('nama_belakang', $namabelakang);
-            $this->db->where('email', $email);
+            $dt = array(
+                'id' => $this->input->post('id'),
+                'namaDepan' => $this->input->post('nama_depan'),
+                'namaBelakang' => $this->input->post('nama_belakang'),
+                'email' => $this->input->post('email')
+            );
+
+            // var_dump($data);
+            // return;
+            
+            $this->db->set('nama_depan', $dt['namaDepan']);
+            $this->db->set('nama_belakang', $dt['namaBelakang']);
+            $this->db->where('id_user', $dt['id']);
 
             $this->db->update('users');
 

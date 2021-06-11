@@ -55,6 +55,7 @@
     <!-- component -->
     <div class="bg-white shadow rounded-lg p-7">
         <?= form_open_multipart('editprofile'); ?>
+        <input id="email" name="id" autocomplete="false" tabindex="0" type="text" class="py-1 px-1 text-gray-900 outline-none block hidden" value=" <?php echo $id; ?> ">
         <div class="grid lg:grid-cols-1 gap-6">
             <h2 class="font-bold text-2xl">Edit Profil</h2>
             <div class="border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1">
