@@ -2,15 +2,20 @@
 
 class Admin extends CI_Controller
 {
-    /**
-     * Fungsi default controller Admin (Admin/Dashboard)
-     */
     public function index()
     {
-        // Dashboard
-        $data = array(
-            'title' => 'Dashboard'
-        );
-        $this->load->view('template/admin/adm.head', $data);
+        if($this->session->status == false)
+        {
+            // Dashboard
+            $data = array(
+                'title' => 'Dashboard'
+            );
+            $this->load->view('admin/template/header', $data);
+            $this->load->view('admin/index', $data);
+            $this->load->view('admin/template/footer', $data);
+        } else {
+            redirect(base_url('login'));
+        }
+            
     }
 }
