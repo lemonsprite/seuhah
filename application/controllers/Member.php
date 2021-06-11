@@ -4,7 +4,8 @@ class User extends CI_Controller
 {
     public function index()
     {
-        $data['judul'] = 'prof';
+        $data['judul'] = 'profil';
+        $data[]
         // Nmabah kodingan
     }
 }

@@ -159,6 +159,67 @@ class Auth extends CI_Controller
         }
     }
 
+    public function myProfile()
+    {
+       $judul = array(
+           'title' => 'Profile saya'
+       );
+        $user = $this->UserModel->get_user([ 'email' => $this->session->userdata('username')])->row_array();
+        foreach ($user as $a){
+        $data = [   
+            'nama_depan' => $user['nama_depan'],
+            'nama_belakang' => $user['nama_belakang'],
+            'email' => $user['email'],
+            'tanggal_buat' => $user['tgl_buat'],
+            ];
+        }
+       
+        $this->load->view('template/header', $judul);
+        $this->load->view('user/index', $data);
+    }
+
+    public function editProfile()
+    {
+       $judul['title'] = 'Edit profil';
+
+       $user = $this->UserModel->get_user([ 'email' => $this->session->userdata('username')])->row_array();
+        foreach($user as $a) {
+            $data = [   
+            'nama_depan' => $user['nama_depan'],
+            'nama_belakang' => $user['nama_belakang'],
+            'email' => $user['email'],
+            'tanggal_buat' => $user['tgl_buat'],
+            ];
+        }
+       
+        $this->form_validation->set_rules('nama_depan', 'Nama Depan', 'required|trim', [
+            'required' => 'nama depan tidak boleh kosong'
+        ]);
+        $this->form_validation->set_rules('nama_belakang', 'Nama belakang', 'required|trim', [
+            'required' => 'nama belakang tidak boleh kosong'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->View('template/header', $judul);
+            $this->load->view('user/ubah_profil', $data);
+
+        }else{
+            $namadepan = $this->input->post('nama_depan', true);
+            $namabelakang = $this->input->post('nama_belakang', true);
+            $email = $this->input->post('email', true);
+
+            $this->db->set('nama_depan', $namadepan);
+            $this->db->set('nama_belakang', $namabelakang);
+            $this->db->where('email', $email);
+
+            $this->db->update('users');
+
+            redirect('myprofile');
+        }
+        
+
+    }
+
     /**
      * Logout
      */
