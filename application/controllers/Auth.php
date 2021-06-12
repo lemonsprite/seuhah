@@ -66,6 +66,7 @@ class Auth extends CI_Controller
                         $sess = array(
                             'username' => $user['email'],
                             'role' => $user['role'],
+                            'id' => $user['id_user'],
                             'status' => TRUE
                         );
                         $this->session->set_userdata($sess);

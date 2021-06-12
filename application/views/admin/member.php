@@ -1,162 +1,6 @@
 <?php date_default_timezone_set('Asia/Bangkok') ?>
 <!-- component -->
-<style>
-    /* Compiled dark classes from Tailwind */
-    .dark .dark\:divide-gray-700> :not([hidden])~ :not([hidden]) {
-        border-color: rgba(55, 65, 81);
-    }
 
-    .dark .dark\:bg-gray-50 {
-        background-color: rgba(249, 250, 251);
-    }
-
-    .dark .dark\:bg-gray-100 {
-        background-color: rgba(243, 244, 246);
-    }
-
-    .dark .dark\:bg-gray-600 {
-        background-color: rgba(75, 85, 99);
-    }
-
-    .dark .dark\:bg-gray-700 {
-        background-color: rgba(55, 65, 81);
-    }
-
-    .dark .dark\:bg-gray-800 {
-        background-color: rgba(31, 41, 55);
-    }
-
-    .dark .dark\:bg-gray-900 {
-        background-color: rgba(17, 24, 39);
-    }
-
-    .dark .dark\:bg-red-700 {
-        background-color: rgba(185, 28, 28);
-    }
-
-    .dark .dark\:bg-green-700 {
-        background-color: rgba(4, 120, 87);
-    }
-
-    .dark .dark\:hover\:bg-gray-200:hover {
-        background-color: rgba(229, 231, 235);
-    }
-
-    .dark .dark\:hover\:bg-gray-600:hover {
-        background-color: rgba(75, 85, 99);
-    }
-
-    .dark .dark\:hover\:bg-gray-700:hover {
-        background-color: rgba(55, 65, 81);
-    }
-
-    .dark .dark\:hover\:bg-gray-900:hover {
-        background-color: rgba(17, 24, 39);
-    }
-
-    .dark .dark\:border-gray-100 {
-        border-color: rgba(243, 244, 246);
-    }
-
-    .dark .dark\:border-gray-400 {
-        border-color: rgba(156, 163, 175);
-    }
-
-    .dark .dark\:border-gray-500 {
-        border-color: rgba(107, 114, 128);
-    }
-
-    .dark .dark\:border-gray-600 {
-        border-color: rgba(75, 85, 99);
-    }
-
-    .dark .dark\:border-gray-700 {
-        border-color: rgba(55, 65, 81);
-    }
-
-    .dark .dark\:border-gray-900 {
-        border-color: rgba(17, 24, 39);
-    }
-
-    .dark .dark\:hover\:border-gray-800:hover {
-        border-color: rgba(31, 41, 55);
-    }
-
-    .dark .dark\:text-white {
-        color: rgba(255, 255, 255);
-    }
-
-    .dark .dark\:text-gray-50 {
-        color: rgba(249, 250, 251);
-    }
-
-    .dark .dark\:text-gray-100 {
-        color: rgba(243, 244, 246);
-    }
-
-    .dark .dark\:text-gray-200 {
-        color: rgba(229, 231, 235);
-    }
-
-    .dark .dark\:text-gray-400 {
-        color: rgba(156, 163, 175);
-    }
-
-    .dark .dark\:text-gray-500 {
-        color: rgba(107, 114, 128);
-    }
-
-    .dark .dark\:text-gray-700 {
-        color: rgba(55, 65, 81);
-    }
-
-    .dark .dark\:text-gray-800 {
-        color: rgba(31, 41, 55);
-    }
-
-    .dark .dark\:text-red-100 {
-        color: rgba(254, 226, 226);
-    }
-
-    .dark .dark\:text-green-100 {
-        color: rgba(209, 250, 229);
-    }
-
-    .dark .dark\:text-blue-400 {
-        color: rgba(96, 165, 250);
-    }
-
-    .dark .group:hover .dark\:group-hover\:text-gray-500 {
-        color: rgba(107, 114, 128);
-    }
-
-    .dark .group:focus .dark\:group-focus\:text-gray-700 {
-        color: rgba(55, 65, 81);
-    }
-
-    .dark .dark\:hover\:text-gray-100:hover {
-        color: rgba(243, 244, 246);
-    }
-
-    .dark .dark\:hover\:text-blue-500:hover {
-        color: rgba(59, 130, 246);
-    }
-
-    /* Custom style */
-    .header-right {
-        width: calc(100% - 3.5rem);
-    }
-
-    .sidebar:hover {
-        width: 16rem;
-    }
-
-    @media only screen and (min-width: 768px) {
-        .header-right {
-            width: calc(100% - 16rem);
-        }
-    }
-</style>
 <div x-data="setup()" :class="{ 'dark': isDark }">
     <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
 
@@ -202,6 +46,7 @@
                 </ul>
             </div>
         </div>
+        <!-- ./Header -->
 
         <!-- Sidebar -->
         <div class="fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-blue-900 dark:bg-gray-900 h-full text-white transition-all duration-300 border-none z-10 sidebar">
@@ -274,251 +119,13 @@
                 <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright &copy; Kelompok 8 <br>12.4B.17 - UBSI Tasikmalaya 2021</p>
             </div>
         </div>
+        <!-- ./Sidebar -->
 
         <div class="h-full ml-14 mt-14 mb-10 md:ml-64">
 
-            <!-- Statistics Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-4 gap-4">
-                <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
-                    <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-                        <i class="fas fa-hand-holding-usd stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out text-2xl"></i>
-                        <!-- <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg> -->
-                    </div>
-                    <div class="text-right">
-                        <p class="text-2xl">232</p>
-                        <p>Pesanan</p>
-                    </div>
-                </div>
-                <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
-                    <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-                        <i class="fas fa-boxes stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out text-2xl"></i>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-2xl">10</p>
-                        <p>Produk</p>
-                    </div>
-                </div>
-                <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
-                    <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-                        <i class="fas fa-users stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out text-2xl"></i>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-2xl"><?= $memberCount ?></p>
-                        <p>Member</p>
-                    </div>
-                </div>
-
+            <div class="p-4">
+                <h1 class="text-2xl">KELOLA MEMBER</h1>
             </div>
-            <!-- ./Statistics Cards -->
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
-
-                <!-- Riwayat Pesanan -->
-                <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
-                    <div class="rounded-t mb-0 px-0 border-0">
-                        <div class="flex flex-wrap items-center px-4 py-2">
-                            <div class="relative w-full max-w-full flex-grow flex-1">
-                                <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Riwayat Pesanan</h3>
-                            </div>
-                            <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-                                <a href='#' class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Lihat Semua</a>
-                            </div>
-                        </div>
-                        <div class="block w-full overflow-x-auto">
-                            <table class="items-center w-full bg-transparent border-collapse">
-                                <thead>
-                                    <tr>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nama Pemesan</th>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nomor Invoice</th>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Jajang</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210602</td>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <p><span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full"> Menunggu Verifikasi </span></p>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Cucu</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210601</td>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <p><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Selesai </span></p>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Emod</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210600</td>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <p><span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"> Ditolak </span></p>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Jetin</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210607</td>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <p><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Selesai </span></p>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Munah</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210602</td>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <p><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Selesai </span></p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Daftar Produk -->
-                <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
-                    <div class="rounded-t mb-0 px-0 border-0">
-                        <div class="flex flex-wrap items-center px-4 py-2">
-                            <div class="relative w-full max-w-full flex-grow flex-1">
-                                <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Daftar Produk</h3>
-                            </div>
-                            <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-                                <a href='#' class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Lihat Semua</a>
-                            </div>
-                        </div>
-                        <div class="block w-full overflow-x-auto">
-                            <table class="items-center w-full bg-transparent border-collapse">
-                                <thead>
-                                    <tr>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">ID Produk</th>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nama Produk</th>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">Harga</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106102</td>
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Es Teh Manis</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 5.000</td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106405</td>
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Nasi Goreng</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 80.000</td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106021</td>
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Mie Goreng</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 70.000</td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106502</td>
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Seblak</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 20.000</td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106103</td>
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Ayam Goreng</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 10.000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="relative flex flex-col min-w-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
-                    <div class="rounded-t mb-0 px-0 border-0">
-                        <div class="flex flex-wrap items-center px-4 py-2">
-                            <div class="relative w-full max-w-full flex-grow flex-1">
-                                <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Recent Activities</h3>
-                            </div>
-                            <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-                                <button class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button>
-                            </div>
-                        </div>
-                        <div class="block w-full">
-                            <div class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                Today
-                            </div>
-                            <ul class="my-1">
-                                <li class="flex px-4">
-                                    <div class="w-9 h-9 rounded-full flex-shrink-0 bg-indigo-500 my-2 mr-3">
-                                        <svg class="w-9 h-9 fill-current text-indigo-50" viewBox="0 0 36 36">
-                                            <path d="M18 10c-4.4 0-8 3.1-8 7s3.6 7 8 7h.6l5.4 2v-4.4c1.2-1.2 2-2.8 2-4.6 0-3.9-3.6-7-8-7zm4 10.8v2.3L18.9 22H18c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5c0 2.2-2 3.8-2 3.8z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex-grow flex items-center border-b border-gray-100 dark:border-gray-400 text-sm text-gray-600 dark:text-gray-100 py-2">
-                                        <div class="flex-grow flex justify-between items-center">
-                                            <div class="self-center">
-                                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100" href="#0" style="outline: none;">Nick Mark</a> mentioned <a class="font-medium text-gray-800 dark:text-gray-50 dark:hover:text-gray-100" href="#0" style="outline: none;">Sara Smith</a> in a new post
-                                            </div>
-                                            <div class="flex-shrink-0 ml-2">
-                                                <a class="flex items-center font-medium text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500" href="#0" style="outline: none;">
-                                                    View<span><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" class="transform transition-transform duration-500 ease-in-out">
-                                                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                                                        </svg></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="flex px-4">
-                                    <div class="w-9 h-9 rounded-full flex-shrink-0 bg-red-500 my-2 mr-3">
-                                        <svg class="w-9 h-9 fill-current text-red-50" viewBox="0 0 36 36">
-                                            <path d="M25 24H11a1 1 0 01-1-1v-5h2v4h12v-4h2v5a1 1 0 01-1 1zM14 13h8v2h-8z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex-grow flex items-center border-gray-100 text-sm text-gray-600 dark:text-gray-50 py-2">
-                                        <div class="flex-grow flex justify-between items-center">
-                                            <div class="self-center">
-                                                The post <a class="font-medium text-gray-800 dark:text-gray-50 dark:hover:text-gray-100" href="#0" style="outline: none;">Post Name</a> was removed by <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100" href="#0" style="outline: none;">Nick Mark</a>
-                                            </div>
-                                            <div class="flex-shrink-0 ml-2">
-                                                <a class="flex items-center font-medium text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500" href="#0" style="outline: none;">
-                                                    View<span><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" class="transform transition-transform duration-500 ease-in-out">
-                                                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                                                        </svg></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                Yesterday
-                            </div>
-                            <ul class="my-1">
-                                <li class="flex px-4">
-                                    <div class="w-9 h-9 rounded-full flex-shrink-0 bg-green-500 my-2 mr-3">
-                                        <svg class="w-9 h-9 fill-current text-light-blue-50" viewBox="0 0 36 36">
-                                            <path d="M23 11v2.085c-2.841.401-4.41 2.462-5.8 4.315-1.449 1.932-2.7 3.6-5.2 3.6h-1v2h1c3.5 0 5.253-2.338 6.8-4.4 1.449-1.932 2.7-3.6 5.2-3.6h3l-4-4zM15.406 16.455c.066-.087.125-.162.194-.254.314-.419.656-.872 1.033-1.33C15.475 13.802 14.038 13 12 13h-1v2h1c1.471 0 2.505.586 3.406 1.455zM24 21c-1.471 0-2.505-.586-3.406-1.455-.066.087-.125.162-.194.254-.316.422-.656.873-1.028 1.328.959.878 2.108 1.573 3.628 1.788V25l4-4h-3z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex-grow flex items-center border-gray-100 text-sm text-gray-600 dark:text-gray-50 py-2">
-                                        <div class="flex-grow flex justify-between items-center">
-                                            <div class="self-center">
-                                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100" href="#0" style="outline: none;">240+</a> users have subscribed to <a class="font-medium text-gray-800 dark:text-gray-50 dark:hover:text-gray-100" href="#0" style="outline: none;">Newsletter #1</a>
-                                            </div>
-                                            <div class="flex-shrink-0 ml-2">
-                                                <a class="flex items-center font-medium text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500" href="#0" style="outline: none;">
-                                                    View<span><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" class="transform transition-transform duration-500 ease-in-out">
-                                                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                                                        </svg></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div> -->
-
-            </div>
-
-
             <div class="grid grid-cols lg:grid-cols p-4">
                 <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
                     <div class="rounded-t mb-0 px-0 border-0">
@@ -527,7 +134,7 @@
                                 <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Daftar Member</h3>
                             </div>
                             <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-                                <a href='#' class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Lihat Semua</a>
+                                <a href='javascript:void(0)' class="modal-open bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Tambah Member</a>
                             </div>
                         </div>
                         <div class="block w-full overflow-x-auto">
@@ -537,7 +144,10 @@
                                         <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nama Depan</th>
                                         <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nama Belakang</th>
                                         <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Email</th>
+                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">Role</th>
                                         <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">Tanggal Bergabung</th>
+                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">Terakhir Diubah</th>
+                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -546,7 +156,15 @@
                                             <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold"><?= $m->nama_depan ?></td>
                                             <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-bold"><?= $m->nama_belakang ?></td>
                                             <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><?= $m->email ?></td>
+                                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><?= $m->role ?></td>
                                             <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><?= date('l, d F Y', $m->tgl_buat) ?></td>
+                                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><?= date('l, d F Y', $m->tgl_edit) ?></td>
+                                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                <div class="grup-btn">
+                                                    <a href="#" class="bg-yellow-400 px-2 py-1">Edit</a>
+                                                    <a href="#" class="bg-red-400 px-2 py-1">Hapus</a>
+                                                </div>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -941,6 +559,46 @@
 
         </div>
 
-        
+        <!-- Modal Area -->
+        <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+            <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+
+            <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto dark:bg-gray-900">
+
+                <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50 dark:text-white">
+                    <svg class="fill-current dark:text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                    </svg>
+                    <span class="text-sm dark:text-white">(Esc)</span>
+                </div>
+
+                <!-- Add margin if you want to see some of the overlay behind the modal-->
+                <div class="modal-content py-4 text-left px-6">
+                    <!--Title-->
+                    <div class="flex justify-between items-center pb-3">
+                        <p class="text-2xl font-bold">Simple Modal!</p>
+                        <div class="modal-close cursor-pointer z-50">
+                            <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!--Body-->
+                    <p>Modal content can go here</p>
+                    <p>...</p>
+                    <p>...</p>
+                    <p>...</p>
+                    <p>...</p>
+
+                    <!--Footer-->
+                    <div class="flex justify-end pt-2">
+                        <button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Action</button>
+                        <button class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
