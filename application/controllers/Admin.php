@@ -139,4 +139,22 @@ class Admin extends CI_Controller
             var_dump($run);
         }
     }
+
+    public function produk()
+    {
+        // $member = $this->UserModel->get_user();
+
+        // Dashboard
+        $data = array(
+            'title' => 'Produk',
+            'produk' => $this->ProdukModel->get_produk()->result()
+        );
+
+        // var_dump($data);
+        // return;
+        $this->load->view('admin/template/header', $data);
+        $this->load->view('admin/template/sidebar', $data);
+        $this->load->view('admin/produk', $data);
+        $this->load->view('admin/template/footer', $data);
+    }
 }

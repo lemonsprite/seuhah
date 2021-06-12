@@ -2,9 +2,9 @@
 
 class UserModel extends CI_Model
 {
-    public function get_user(array $id = null)
+    public function get_user(array $param = null)
     {
-        if ($id == null)
+        if ($param == null)
         {
             $this->db->join('role','users.role=role.id_role','inner');
             $this->db->order_by('tgl_buat','DESC');
@@ -14,14 +14,14 @@ class UserModel extends CI_Model
         {
             $this->db->join('role','users.role=role.id_role','inner');
             $this->db->order_by('tgl_buat','DESC');
-            $this->db->where('id_user', $id['id']);
+            $this->db->where('id_user', $param['id']);
             return $this->db->get('users');
         }
     }
 
-    public function get_member(array $id = null, int $limit = null)
+    public function get_member(array $param = null, int $limit = null)
     {
-        if ($id == null)
+        if ($param == null)
         {
             $this->db->join('role','users.role=role.id_role','inner');
             $this->db->order_by('tgl_buat','DESC');
@@ -32,15 +32,15 @@ class UserModel extends CI_Model
         {
             $this->db->join('role','users.role=role.id_role','inner');
             $this->db->order_by('tgl_buat','DESC');
-            $this->db->where('id_user', $id['id']);
+            $this->db->where('id_user', $param['id']);
             $this->db->where('role', 2);
             return $this->db->get('users', $limit);
         }
     }
 
-    public function add_user(array $data)
+    public function add_user(array $param)
     {
-        return $this->db->insert('users', $data);
+        return $this->db->insert('users', $param);
     }
 
     public function del_user(array $param = null)

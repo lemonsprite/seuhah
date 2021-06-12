@@ -57,14 +57,7 @@
                             <span class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">1.2k</span>
                         </a>
                     </li> -->
-            <li>
-                <a href="<?= base_url('admin/tentang') ?>" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                    <span class="inline-flex justify-center items-center ml-4 w-5 h-5">
-                        <i class="fas fa-info-circle"></i>
-                    </span>
-                    <span class="ml-2 text-sm tracking-wide truncate">Tentang</span>
-                </a>
-            </li>
+            
         </ul>
         <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright &copy; Kelompok 8 <br>12.4B.17 - UBSI Tasikmalaya 2021</p>
     </div>
