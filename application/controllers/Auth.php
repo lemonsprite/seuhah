@@ -65,6 +65,7 @@ class Auth extends CI_Controller
                     {
                         $sess = array(
                             'username' => $user['email'],
+                            'nama' => $user['nama_depan'].' '.$user['nama_belakang'],
                             'role' => $user['role'],
                             'id' => $user['id_user'],
                             'status' => TRUE
@@ -147,7 +148,7 @@ class Auth extends CI_Controller
                         'nama_belakang' => strip_tags($this->input->post('nama_belakang')),
                         'email' => strip_tags($this->input->post('email')),
                         'pass' => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
-                        'role' => 1,
+                        'role' => 2,
                         'tgl_edit' => $date->getTimestamp(),
                         'tgl_buat' => $date->getTimestamp()
                     );

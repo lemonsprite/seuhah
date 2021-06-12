@@ -1,434 +1,157 @@
-<?php date_default_timezone_set('Asia/Bangkok') ?>
-<!-- component -->
-<style>
-    /* Compiled dark classes from Tailwind */
-    .dark .dark\:divide-gray-700> :not([hidden])~ :not([hidden]) {
-        border-color: rgba(55, 65, 81);
-    }
+<div class="h-full ml-14 mt-14 mb-10 md:ml-64">
 
-    .dark .dark\:bg-gray-50 {
-        background-color: rgba(249, 250, 251);
-    }
-
-    .dark .dark\:bg-gray-100 {
-        background-color: rgba(243, 244, 246);
-    }
-
-    .dark .dark\:bg-gray-600 {
-        background-color: rgba(75, 85, 99);
-    }
-
-    .dark .dark\:bg-gray-700 {
-        background-color: rgba(55, 65, 81);
-    }
-
-    .dark .dark\:bg-gray-800 {
-        background-color: rgba(31, 41, 55);
-    }
-
-    .dark .dark\:bg-gray-900 {
-        background-color: rgba(17, 24, 39);
-    }
-
-    .dark .dark\:bg-red-700 {
-        background-color: rgba(185, 28, 28);
-    }
-
-    .dark .dark\:bg-green-700 {
-        background-color: rgba(4, 120, 87);
-    }
-
-    .dark .dark\:hover\:bg-gray-200:hover {
-        background-color: rgba(229, 231, 235);
-    }
-
-    .dark .dark\:hover\:bg-gray-600:hover {
-        background-color: rgba(75, 85, 99);
-    }
-
-    .dark .dark\:hover\:bg-gray-700:hover {
-        background-color: rgba(55, 65, 81);
-    }
-
-    .dark .dark\:hover\:bg-gray-900:hover {
-        background-color: rgba(17, 24, 39);
-    }
-
-    .dark .dark\:border-gray-100 {
-        border-color: rgba(243, 244, 246);
-    }
-
-    .dark .dark\:border-gray-400 {
-        border-color: rgba(156, 163, 175);
-    }
-
-    .dark .dark\:border-gray-500 {
-        border-color: rgba(107, 114, 128);
-    }
-
-    .dark .dark\:border-gray-600 {
-        border-color: rgba(75, 85, 99);
-    }
-
-    .dark .dark\:border-gray-700 {
-        border-color: rgba(55, 65, 81);
-    }
-
-    .dark .dark\:border-gray-900 {
-        border-color: rgba(17, 24, 39);
-    }
-
-    .dark .dark\:hover\:border-gray-800:hover {
-        border-color: rgba(31, 41, 55);
-    }
-
-    .dark .dark\:text-white {
-        color: rgba(255, 255, 255);
-    }
-
-    .dark .dark\:text-gray-50 {
-        color: rgba(249, 250, 251);
-    }
-
-    .dark .dark\:text-gray-100 {
-        color: rgba(243, 244, 246);
-    }
-
-    .dark .dark\:text-gray-200 {
-        color: rgba(229, 231, 235);
-    }
-
-    .dark .dark\:text-gray-400 {
-        color: rgba(156, 163, 175);
-    }
-
-    .dark .dark\:text-gray-500 {
-        color: rgba(107, 114, 128);
-    }
-
-    .dark .dark\:text-gray-700 {
-        color: rgba(55, 65, 81);
-    }
-
-    .dark .dark\:text-gray-800 {
-        color: rgba(31, 41, 55);
-    }
-
-    .dark .dark\:text-red-100 {
-        color: rgba(254, 226, 226);
-    }
-
-    .dark .dark\:text-green-100 {
-        color: rgba(209, 250, 229);
-    }
-
-    .dark .dark\:text-blue-400 {
-        color: rgba(96, 165, 250);
-    }
-
-    .dark .group:hover .dark\:group-hover\:text-gray-500 {
-        color: rgba(107, 114, 128);
-    }
-
-    .dark .group:focus .dark\:group-focus\:text-gray-700 {
-        color: rgba(55, 65, 81);
-    }
-
-    .dark .dark\:hover\:text-gray-100:hover {
-        color: rgba(243, 244, 246);
-    }
-
-    .dark .dark\:hover\:text-blue-500:hover {
-        color: rgba(59, 130, 246);
-    }
-
-    /* Custom style */
-    .header-right {
-        width: calc(100% - 3.5rem);
-    }
-
-    .sidebar:hover {
-        width: 16rem;
-    }
-
-    @media only screen and (min-width: 768px) {
-        .header-right {
-            width: calc(100% - 16rem);
-        }
-    }
-</style>
-<div x-data="setup()" :class="{ 'dark': isDark }">
-    <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
-
-        <!-- Header -->
-        <div class="fixed w-full flex items-center justify-between h-14 text-white z-10">
-            <div class="flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-blue-800 dark:bg-gray-800 border-none">
-                <img class="w-7 h-7 md:w-10 md:h-10 mr-2 rounded-md overflow-hidden" src="https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar.jpg" />
-                <span class="hidden md:block"><?= $user['nama_depan'] ?> <?= $user['nama_belakang'] ?></span>
-            </div>
-            <div class="flex justify-between items-center h-14 bg-blue-800 dark:bg-gray-800 header-right">
-                <div class="bg-white rounded flex items-center w-full max-w-xl mr-4 p-2 shadow-sm border border-gray-200">
-                    <button class="outline-none focus:outline-none">
-                        <svg class="w-5 text-gray-600 h-5 cursor-pointer" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
-                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </button>
-                    <input type="search" name="" id="" placeholder="Search" class="w-full pl-3 text-sm text-black outline-none focus:outline-none bg-transparent" />
-                </div>
-                <ul class="flex items-center">
-                    <li>
-                        <button aria-hidden="true" @click="toggleTheme" class="group p-2 transition-colors duration-200 rounded-full shadow-md bg-blue-200 hover:bg-blue-200 dark:bg-gray-50 dark:hover:bg-gray-200 text-gray-900 focus:outline-none">
-                            <svg x-show="isDark" width="24" height="24" class="fill-current text-gray-700 group-hover:text-gray-500 group-focus:text-gray-700 dark:text-gray-700 dark:group-hover:text-gray-500 dark:group-focus:text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                            </svg>
-                            <svg x-show="!isDark" width="24" height="24" class="fill-current text-gray-700 group-hover:text-gray-500 group-focus:text-gray-700 dark:text-gray-700 dark:group-hover:text-gray-500 dark:group-focus:text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                            </svg>
-                        </button>
-                    </li>
-                    <li>
-                        <div class="block w-px h-6 mx-3 bg-gray-400 dark:bg-gray-700"></div>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('logout') ?>" class="flex items-center mr-4 hover:text-blue-100">
-                            <span class="inline-flex mr-1">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                                </svg>
-                            </span>
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Sidebar -->
-        <div class="fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-blue-900 dark:bg-gray-900 h-full text-white transition-all duration-300 border-none z-10 sidebar">
-            <div class="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
-                <ul class="flex flex-col py-4 space-y-1">
-                    <li class="px-5 hidden md:block">
-                        <div class="flex flex-row items-center h-8">
-                            <div class="text-sm font-light tracking-wide text-gray-400 uppercase">Menu Navigasi</div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('admin/dashboard') ?>" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                            <span class="inline-flex justify-center items-center ml-4  w-5 h-5">
-                                <i class="fas fa-home"></i>
-                            </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Beranda</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('admin/member') ?>" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                            <span class="inline-flex justify-center items-center ml-4 w-5 h-5">
-                                <i class="fas fa-users"></i>
-                            </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Member</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                            <span class="inline-flex justify-center items-center ml-4 w-5 h-5">
-                                <i class="fas fa-archive"></i>
-                            </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Produk</span>
-                            <!-- <span class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-blue-500 bg-indigo-50 rounded-full">New</span> -->
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                            <span class="inline-flex justify-center items-center ml-4 w-5 h-5">
-                                <i class="fas fa-cart-arrow-down"></i>
-                                <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                                </svg> -->
-                                <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
-                                </svg> -->
-                            </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Pesanan</span>
-                        </a>
-                    </li>
-                    <!-- <li>
-                        <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                            <span class="inline-flex justify-center items-center ml-4">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-                                </svg>
-                            </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Notifications</span>
-                            <span class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">1.2k</span>
-                        </a>
-                    </li> -->
-                    <li>
-                        <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                            <span class="inline-flex justify-center items-center ml-4 w-5 h-5">
-                                <i class="fas fa-info-circle"></i>
-                            </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Tentang</span>
-                        </a>
-                    </li>
-                </ul>
-                <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright &copy; Kelompok 8 <br>12.4B.17 - UBSI Tasikmalaya 2021</p>
-            </div>
-        </div>
-
-        <div class="h-full ml-14 mt-14 mb-10 md:ml-64">
-
-            <!-- Statistics Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-4 gap-4">
-                <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
-                    <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-                        <i class="fas fa-hand-holding-usd stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out text-2xl"></i>
-                        <!-- <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
+    <!-- Statistics Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-4 gap-4">
+        <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
+            <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+                <i class="fas fa-hand-holding-usd stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out text-2xl"></i>
+                <!-- <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg> -->
-                    </div>
-                    <div class="text-right">
-                        <p class="text-2xl">232</p>
-                        <p>Pesanan</p>
-                    </div>
-                </div>
-                <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
-                    <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-                        <i class="fas fa-boxes stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out text-2xl"></i>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-2xl">10</p>
-                        <p>Produk</p>
-                    </div>
-                </div>
-                <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
-                    <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-                        <i class="fas fa-users stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out text-2xl"></i>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-2xl"><?= $memberCount ?></p>
-                        <p>Member</p>
-                    </div>
-                </div>
-
             </div>
-            <!-- ./Statistics Cards -->
+            <div class="text-right">
+                <p class="text-2xl">232</p>
+                <p>Pesanan</p>
+            </div>
+        </div>
+        <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
+            <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+                <i class="fas fa-boxes stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out text-2xl"></i>
+            </div>
+            <div class="text-right">
+                <p class="text-2xl">10</p>
+                <p>Produk</p>
+            </div>
+        </div>
+        <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
+            <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+                <i class="fas fa-users stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out text-2xl"></i>
+            </div>
+            <div class="text-right">
+                <p class="text-2xl"><?= $memberCount ?></p>
+                <p>Member</p>
+            </div>
+        </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
+    </div>
+    <!-- ./Statistics Cards -->
 
-                <!-- Riwayat Pesanan -->
-                <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
-                    <div class="rounded-t mb-0 px-0 border-0">
-                        <div class="flex flex-wrap items-center px-4 py-2">
-                            <div class="relative w-full max-w-full flex-grow flex-1">
-                                <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Riwayat Pesanan</h3>
-                            </div>
-                            <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-                                <a href='#' class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Lihat Semua</a>
-                            </div>
-                        </div>
-                        <div class="block w-full overflow-x-auto">
-                            <table class="items-center w-full bg-transparent border-collapse">
-                                <thead>
-                                    <tr>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nama Pemesan</th>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nomor Invoice</th>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Jajang</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210602</td>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <p><span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full"> Menunggu Verifikasi </span></p>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Cucu</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210601</td>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <p><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Selesai </span></p>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Emod</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210600</td>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <p><span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"> Ditolak </span></p>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Jetin</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210607</td>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <p><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Selesai </span></p>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Munah</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210602</td>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <p><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Selesai </span></p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
+
+        <!-- Riwayat Pesanan -->
+        <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
+            <div class="rounded-t mb-0 px-0 border-0">
+                <div class="flex flex-wrap items-center px-4 py-2">
+                    <div class="relative w-full max-w-full flex-grow flex-1">
+                        <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Riwayat Pesanan</h3>
+                    </div>
+                    <div class="relative w-full max-w-full flex-grow flex-1 text-right">
+                        <a href='#' class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Lihat Semua</a>
                     </div>
                 </div>
+                <div class="block w-full overflow-x-auto">
+                    <table class="items-center w-full bg-transparent border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nama Pemesan</th>
+                                <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nomor Invoice</th>
+                                <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-gray-700 dark:text-gray-100">
+                                <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Jajang</th>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210602</td>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    <p><span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full"> Menunggu Verifikasi </span></p>
+                                </td>
+                            </tr>
+                            <tr class="text-gray-700 dark:text-gray-100">
+                                <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Cucu</th>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210601</td>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    <p><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Selesai </span></p>
+                                </td>
+                            </tr>
+                            <tr class="text-gray-700 dark:text-gray-100">
+                                <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Emod</th>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210600</td>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    <p><span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"> Ditolak </span></p>
+                                </td>
+                            </tr>
+                            <tr class="text-gray-700 dark:text-gray-100">
+                                <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Jetin</th>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210607</td>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    <p><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Selesai </span></p>
+                                </td>
+                            </tr>
+                            <tr class="text-gray-700 dark:text-gray-100">
+                                <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Munah</th>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">IKS-20210602</td>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    <p><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Selesai </span></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-                <!-- Daftar Produk -->
-                <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
-                    <div class="rounded-t mb-0 px-0 border-0">
-                        <div class="flex flex-wrap items-center px-4 py-2">
-                            <div class="relative w-full max-w-full flex-grow flex-1">
-                                <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Daftar Produk</h3>
-                            </div>
-                            <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-                                <a href='#' class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Lihat Semua</a>
-                            </div>
-                        </div>
-                        <div class="block w-full overflow-x-auto">
-                            <table class="items-center w-full bg-transparent border-collapse">
-                                <thead>
-                                    <tr>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">ID Produk</th>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nama Produk</th>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">Harga</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106102</td>
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Es Teh Manis</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 5.000</td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106405</td>
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Nasi Goreng</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 80.000</td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106021</td>
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Mie Goreng</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 70.000</td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106502</td>
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Seblak</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 20.000</td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-100">
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106103</td>
-                                        <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Ayam Goreng</th>
-                                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 10.000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+        <!-- Daftar Produk -->
+        <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
+            <div class="rounded-t mb-0 px-0 border-0">
+                <div class="flex flex-wrap items-center px-4 py-2">
+                    <div class="relative w-full max-w-full flex-grow flex-1">
+                        <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Daftar Produk</h3>
+                    </div>
+                    <div class="relative w-full max-w-full flex-grow flex-1 text-right">
+                        <a href='#' class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Lihat Semua</a>
                     </div>
                 </div>
-                <!-- <div class="relative flex flex-col min-w-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
+                <div class="block w-full overflow-x-auto">
+                    <table class="items-center w-full bg-transparent border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">ID Produk</th>
+                                <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nama Produk</th>
+                                <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">Harga</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-gray-700 dark:text-gray-100">
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106102</td>
+                                <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Es Teh Manis</th>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 5.000</td>
+                            </tr>
+                            <tr class="text-gray-700 dark:text-gray-100">
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106405</td>
+                                <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Nasi Goreng</th>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 80.000</td>
+                            </tr>
+                            <tr class="text-gray-700 dark:text-gray-100">
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106021</td>
+                                <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Mie Goreng</th>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 70.000</td>
+                            </tr>
+                            <tr class="text-gray-700 dark:text-gray-100">
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106502</td>
+                                <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Seblak</th>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 20.000</td>
+                            </tr>
+                            <tr class="text-gray-700 dark:text-gray-100">
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">KSP-202106103</td>
+                                <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Ayam Goreng</th>
+                                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">Rp. 10.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="relative flex flex-col min-w-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
                     <div class="rounded-t mb-0 px-0 border-0">
                         <div class="flex flex-wrap items-center px-4 py-2">
                             <div class="relative w-full max-w-full flex-grow flex-1">
@@ -516,48 +239,48 @@
                     </div>
                 </div> -->
 
-            </div>
+    </div>
 
 
-            <div class="grid grid-cols lg:grid-cols p-4">
-                <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
-                    <div class="rounded-t mb-0 px-0 border-0">
-                        <div class="flex flex-wrap items-center px-4 py-2">
-                            <div class="relative w-full max-w-full flex-grow flex-1">
-                                <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Daftar Member</h3>
-                            </div>
-                            <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-                                <a href='#' class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Lihat Semua</a>
-                            </div>
-                        </div>
-                        <div class="block w-full overflow-x-auto">
-                            <table id='member' class="items-center w-full bg-transparent border-collapse">
-                                <thead>
-                                    <tr>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nama Depan</th>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nama Belakang</th>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Email</th>
-                                        <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">Tanggal Bergabung</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($member as $m) : ?>
-                                        <tr class="text-gray-700 dark:text-gray-100">
-                                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold"><?= $m->nama_depan ?></td>
-                                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-bold"><?= $m->nama_belakang ?></td>
-                                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><?= $m->email ?></td>
-                                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><?= date('l, d F Y', $m->tgl_buat) ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-
-                        </div>
+    <div class="grid grid-cols lg:grid-cols p-4">
+        <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
+            <div class="rounded-t mb-0 px-0 border-0">
+                <div class="flex flex-wrap items-center px-4 py-2">
+                    <div class="relative w-full max-w-full flex-grow flex-1">
+                        <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Daftar Member Baru</h3>
+                    </div>
+                    <div class="relative w-full max-w-full flex-grow flex-1 text-right">
+                        <a href='<?= base_url('admin/member') ?>' class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Lihat Semua</a>
                     </div>
                 </div>
-            </div>
+                <div class="block w-full overflow-x-auto">
+                    <table id='member' class="items-center w-full bg-transparent border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nama Depan</th>
+                                <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nama Belakang</th>
+                                <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Email</th>
+                                <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">Tanggal Bergabung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($member as $m) : ?>
+                                <tr class="text-gray-700 dark:text-gray-100">
+                                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold"><?= $m->nama_depan ?></td>
+                                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-bold"><?= $m->nama_belakang ?></td>
+                                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><?= $m->email ?></td>
+                                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><?= date('l, d F Y', $m->tgl_buat) ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
 
-            <!-- <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 gap-4 text-black dark:text-white">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 gap-4 text-black dark:text-white">
                 <div class="md:col-span-2 xl:col-span-3">
                     <h3 class="text-lg font-semibold">Task summaries of recent sprints</h3>
                 </div>
@@ -670,7 +393,7 @@
 
 
 
-            <!-- <div class="mt-4 mx-4">
+    <!-- <div class="mt-4 mx-4">
                 <div class="w-full overflow-hidden rounded-lg shadow-xs">
                     <div class="w-full overflow-x-auto">
                         <table class="w-full">
@@ -832,7 +555,7 @@
 
 
 
-            <!-- <div class="mt-8 mx-4">
+    <!-- <div class="mt-8 mx-4">
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="p-6 mr-2 bg-gray-100 dark:bg-gray-800 sm:rounded-lg">
                         <h1 class="text-4xl sm:text-5xl text-gray-800 dark:text-white font-extrabold tracking-tight">Get in touch</h1>
@@ -883,7 +606,7 @@
 
 
 
-            <!-- <div class="mt-8 mx-4">
+    <!-- <div class="mt-8 mx-4">
                 <div class="p-4 bg-blue-50 dark:bg-gray-800 dark:text-gray-50 border border-blue-500 dark:border-gray-500 rounded-lg shadow-md">
                     <h4 class="text-lg font-semibold">Have taken ideas & reused components from the following resources:</h4>
                     <ul>
@@ -939,8 +662,3 @@
                 </div>
             </div> -->
 
-        </div>
-
-        
-    </div>
-</div>
