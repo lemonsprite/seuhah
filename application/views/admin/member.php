@@ -39,8 +39,8 @@
                                     <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><?= date('l, d F Y', $m->tgl_edit) ?></td>
                                     <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                         <div class="grup-btn">
-                                            <a href="<?= base_url("admin/edit_user/{$m->id_user}") ?>" class="bg-yellow-400 px-2 py-1">Edit</a>
-                                            <a href="<?= base_url("admin/hapus_user/{$m->id_user}") ?>" class="bg-red-400 px-2 py-1">Hapus</a>
+                                            <a href="<?= base_url("admin/edit_member/{$m->id_user}") ?>" class="bg-yellow-400 px-2 py-1">Edit</a>
+                                            <a href="<?= base_url("admin/hapus_member/{$m->id_user}") ?>" class="bg-red-400 px-2 py-1">Hapus</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -62,7 +62,7 @@
     <div class="modal-overlay absolute w-screen h-screen bg-gray-900 opacity-50"></div>
 
     <div class="modal-container bg-white w-11/12 md:max-w-2xl mx-auto rounded shadow-lg z-50 overflow-y-auto dark:bg-gray-900 my-10">
-        <form class="" action="<?= base_url('admin/tambah_user') ?>" method="POST">
+        <form class="" action="<?= base_url('admin/tambah_member') ?>" method="POST">
             <!--Title-->
             <div class="flex justify-between items-center pb-3 sticky top-0 py-4 px-6 bg-white dark:bg-gray-900 shadow-md">
                 <p class="text-2xl font-bold">Tambah User</p>
@@ -128,7 +128,7 @@
 
             <!--Footer-->
             <div class="flex justify-end pt-2 sticky bottom-0 py-4 px-6 bg-white dark:bg-gray-900 border-t">
-
+                <a class="modal-close px-4 bg-blue-500 py-2 rounded-lg text-white hover:bg-blue-400 mr-4" href="javascript:void(0)">Kembali</a>
                 <button class="px-4 bg-green-500 py-2 rounded-lg text-white hover:bg-green-400 " type="submit">Simpan</button>
             </div>
         </form>

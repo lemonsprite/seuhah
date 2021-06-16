@@ -79,13 +79,15 @@ class Admin extends CI_Controller
             )
         );
 
-        if($this->form_validation->run() == false)
+        if ($this->form_validation->run() == false)
         {
             redirect('admin/member');
-        } else {
+        }
+        else
+        {
 
             $pwd = $this->input->post('pwd1');
-            $pwd = password_hash($pwd,PASSWORD_DEFAULT);
+            $pwd = password_hash($pwd, PASSWORD_DEFAULT);
 
             $data = array(
                 'nama_depan' => trim($this->input->post('namaDep')),
@@ -99,25 +101,26 @@ class Admin extends CI_Controller
 
             $run = $this->UserModel->add_user($data);
 
-            if($run)
+            if ($run)
             {
                 $this->session->set_flashdata('pesan', 'Data berhasil ditambahkan!');
                 redirect('admin/member');
-            } else {
+            }
+            else
+            {
                 echo var_dump($data);
             }
         }
-        
     }
 
     public function edit_member($param)
     {
-        $member = $this->UserModel->get_member(array('id' => $param));
-
+        $member = $this->UserModel->get_member($param);
+        
         // Member Edit
         $data = array(
             'title' => 'Edit Member',
-            'user' => $this->UserModel->get_user(array('id_user' => $this->session->id))->row_array(),
+            'user' => $this->UserModel->get_user(array('id' => $this->session->id))->row(),
             'member' => $member->row(),
         );
 
@@ -128,14 +131,45 @@ class Admin extends CI_Controller
         $this->load->view('admin/template/footer', $data);
     }
 
+    public function update_member()
+    {
+        $p = $this->input->post('pass_baru');
+        $p_n = $this->input->post('pass_baru2');
+
+        $data = array(
+            'nama_depan' => $this->input->post('namaDep'),
+            'nama_belakang' => $this->input->post('namaBel'),
+            'email' => $this->input->post('email'),
+        );
+
+        if ($p != null && $p_n != null)
+        {
+            if ($p == $p_n)
+            {
+
+                $pwd_n = array(
+                    'pass' => password_hash($this->input->post('pass_baru'), PASSWORD_DEFAULT)
+                );
+                $this->UserModel->set_user($pwd_n, array('id_user' => $this->input->post('id')));
+                echo 'diupdate pass';
+            }
+        } else {
+            $this->UserModel->set_user($data, array('id_user' => $this->input->post('id')));
+        }
+        redirect('admin/member');
+    
+    }
+
     public function hapus_member($param)
     {
         $run = $this->UserModel->del_user(array('id' => $param));
-        if($run)
+        if ($run)
         {
-            $this->session->set_flashdata('pesan','Data Berhasil Dihapus!');
+            $this->session->set_flashdata('pesan', 'Data Berhasil Dihapus!');
             redirect('admin/member');
-        } else {
+        }
+        else
+        {
             var_dump($run);
         }
     }

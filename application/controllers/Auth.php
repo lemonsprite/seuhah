@@ -61,6 +61,7 @@ class Auth extends CI_Controller
                     $time = 3600 * 12;
 
                     $user = $callback->row_array();
+                    // return var_dump( password_verify($pwd, $user['pass']));
                     if(password_verify($pwd, $user['pass']))
                     {
                         $sess = array(
