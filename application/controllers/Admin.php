@@ -67,16 +67,7 @@ class Admin extends CI_Controller
     {
         $img = $this->input->post('foto');
 
-        $img = explode(';', $img);
-        $img = explode(',',$img[1]);
-
-        $img = base64_decode($img[1]);
-
-        $imgname = time().'.png';
-
-        // var_dump(FCPATH.'assets\\upload\\');
-        // return;
-        file_put_contents(FCPATH.'assets\\uploads\\'.$imgname, $img);
+        $imgname = $this->upload($img);
 
 
         // Generate Kode Produk
@@ -111,6 +102,49 @@ class Admin extends CI_Controller
         }
     }
 
+    public function edit_produk($id)
+    {
+        $data = array(
+            'title' => 'Ubah Produk',
+            'user' => $this->AdminModel->get_user(array('id' => $this->session->id))->row_array(),
+            'produk' => $this->AdminModel->get_produk($id)->row()
+        );
+
+        $this->load->view('admin/template/header', $data);
+        $this->load->view('admin/template/sidebar');
+        $this->load->view('admin/template//navbar');
+        $this->load->view('admin/ubahProduk');
+        $this->load->view('admin/template/footer');
+    }
+
+    public function update_produk()
+    {
+        $id = $this->input->post('id_produk');
+        $data = array(
+            'nama_produk' => $this->input->post('namaProduk'),
+            'harga' => $this->input->post('hargaProduk'),
+            'deskripsi_produk' => $this->input->post('deskripsiProduk'),
+            'tgl_edit' => time(),
+        );
+
+        // Logic kalo foto ada
+        if($this->input->post('foto') != null)
+        {
+            $img = $this->input->post('foto');
+            $this->delete($this->input->post('currFoto'));
+            $imgname = $this->upload($img);
+            $data['foto'] = $imgname;
+        }
+
+
+        $run = $this->AdminModel->set_produk($id, $data);
+
+        if($run)
+        {
+            redirect(base_url('admin/produk'));
+        }
+    }
+
 
 
 
@@ -132,5 +166,26 @@ class Admin extends CI_Controller
         $this->load->view('admin/template//navbar');
         $this->load->view('admin/pesanan');
         $this->load->view('admin/template/footer');
+    }
+
+
+    private function upload($img)
+    {
+        $img = explode(';', $img);
+        $img = explode(',',$img[1]);
+
+        $img = base64_decode($img[1]);
+
+        $imgname = time().'.png';
+
+        // var_dump(FCPATH.'assets\\upload\\');
+        // return;
+        file_put_contents(FCPATH.'assets\\uploads\\'.$imgname, $img);
+        return $imgname;
+    }
+
+    private function delete($name)
+    {
+        unlink(FCPATH.'assets\\uploads\\'.$name);
     }
 }

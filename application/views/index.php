@@ -66,70 +66,16 @@
                 <div class="md:container m-auto  px-10 py-20">
                     <h1 class="font-bold text-4xl pb-16">Menu yang kami Sediakan.</h1>
                     <div class="grid grid-cols-4 gap-5">
+                        <?php foreach($produk as $p): ?>
                         <div class="kartu pb-5">
                             <a href="#" class="flex-col">
                                 <div class="foto h-4/5 truncate rounded-md">
-                                    <img src="<?= base_url('assets/img/ayamgoreng.jpg'); ?>" class="shadow-md object-cover w-full h-full">
+                                    <img src='<?= base_url("assets/uploads/{$p->foto}"); ?>'' class="shadow-md object-cover w-full h-full">
                                 </div>
-                                <h2 class="font-bold pt-4 text-lg">Ayam Goreng</h2>
+                                <h2 class="font-bold pt-4 text-lg"><?= $p->nama_produk?></h2>
                             </a>
                         </div>
-                        <div class="kartu pb-5">
-                            <a href="#" class="flex-col">
-                                <div class="foto h-4/5 truncate rounded-md">
-                                    <img src="<?= base_url('assets/img/baso.jpeg') ?>" class="shadow-md object-cover w-full h-full">
-                                </div>
-                                <h2 class="font-bold pt-4 text-lg">Mie Baso</h2>
-                            </a>
-                        </div>
-                        <div class="kartu pb-5">
-                            <a href="#" class="flex-col">
-                                <div class="foto h-4/5 truncate rounded-md">
-                                    <img src="<?= base_url('assets/img/migoreng.jpeg') ?>" class="shadow-md object-cover w-full h-full">
-                                </div>
-                                <h2 class="font-bold pt-4 text-lg">Mie Goreng</h2>
-                            </a>
-                        </div>
-                        <div class="kartu pb-5">
-                            <a href="#" class="flex-col">
-                                <div class="foto h-4/5 truncate rounded-md">
-                                    <img src="<?= base_url('assets/img/nasi_padang.jpeg') ?>" class="shadow-md object-cover w-full h-full">
-                                </div>
-                                <h2 class="font-bold pt-4 text-lg">Nasi Padang</h2>
-                            </a>
-                        </div>
-                        <div class="kartu pb-5">
-                            <a href="#" class="flex-col">
-                                <div class="foto h-4/5 truncate rounded-md">
-                                    <img src="<?= base_url('assets/img/kopi.jpg') ?>" class="shadow-md object-cover w-full h-full">
-                                </div>
-                                <h2 class="font-bold pt-4 text-lg">Kopi</h2>
-                            </a>
-                        </div>
-                        <div class="kartu pb-5">
-                            <a href="#" class="flex-col">
-                                <div class="foto h-4/5 truncate rounded-md">
-                                    <img src="<?= base_url('assets/img/seblak.jpg') ?>" class="shadow-md object-cover w-full h-full">
-                                </div>
-                                <h2 class="font-bold pt-4 text-lg">Seblak</h2>
-                            </a>
-                        </div>
-                        <div class="kartu pb-5">
-                            <a href="#" class="flex-col">
-                                <div class="foto h-4/5 truncate rounded-md">
-                                    <img src="<?= base_url('assets/img/nasigoyeng.jpeg') ?>" class="shadow-md object-cover w-full h-full">
-                                </div>
-                                <h2 class="font-bold pt-4 text-lg">Nasi Goreng</h2>
-                            </a>
-                        </div>
-                        <div class="kartu pb-5">
-                            <a href="#" class="flex-col">
-                                <div class="foto h-4/5 truncate rounded-md">
-                                    <img src="<?= base_url('assets/img/soteng.jpg') ?>" class="shadow-md object-cover w-full h-full">
-                                </div>
-                                <h2 class="font-bold pt-4 text-lg">Soteng</h2>
-                            </a>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

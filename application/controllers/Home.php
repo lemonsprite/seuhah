@@ -9,7 +9,8 @@ class Home extends CI_Controller
     public function index()
     {
         $data = array(
-            'title' => 'Home'
+            'title' => 'Home',
+            'produk' => $this->AdminModel->get_produk()->result()
         );
 
         $this->load->view('template/header', $data);

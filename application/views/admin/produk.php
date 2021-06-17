@@ -34,10 +34,10 @@
                                         <td class="text-bold-500"><?= $u->kode_produk ?></td>
                                         <td><?= $u->nama_produk ?></td>
                                         <td><?= $u->harga ?></td>
-                                        <td><?= $u->foto ?></td>
+                                        <td><img src="<?= base_url("assets/uploads/{$u->foto}") ?>" height="50"></td>
                                         <td>
-                                            <a class="btn btn-sm btn-warning" href="javascript:void(0)"><i data-feather="edit-2" width="20"></i></a>
-                                            <a class="btn btn-sm btn-danger" href='<?= base_url("admin/hapus_produk/{$u->id_produk}")?>'><i data-feather="trash-2" width="20"></i></a>
+                                            <a class="btn btn-sm btn-warning" href='<?= base_url("admin/edit_produk/{$u->id_produk}")?>'><i data-feather="edit-2" width="20"></i></a>
+                                            <a class="btn btn-sm btn-danger" onclick="return confirm('Apa anda yakin menghapus data ini?')" href='<?= base_url("admin/hapus_produk/{$u->id_produk}")?>'><i data-feather="trash-2" width="20"></i></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
