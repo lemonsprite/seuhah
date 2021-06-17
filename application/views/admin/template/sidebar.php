@@ -1,65 +1,114 @@
-<!-- Sidebar -->
-<div class="fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-blue-900 dark:bg-gray-900 h-full text-white transition-all duration-300 border-none z-10 sidebar">
-    <div class="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
-        <ul class="flex flex-col py-4 space-y-1">
-            <li class="px-5 hidden md:block">
-                <div class="flex flex-row items-center h-8">
-                    <div class="text-sm font-light tracking-wide text-gray-400 uppercase">Menu Navigasi</div>
-                </div>
-            </li>
-            <li>
-                <a href="<?= base_url('admin/dashboard') ?>" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                    <span class="inline-flex justify-center items-center ml-4  w-5 h-5">
-                        <i class="fas fa-home"></i>
-                    </span>
-                    <span class="ml-2 text-sm tracking-wide truncate">Beranda</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?= base_url('admin/member') ?>" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                    <span class="inline-flex justify-center items-center ml-4 w-5 h-5">
-                        <i class="fas fa-users"></i>
-                    </span>
-                    <span class="ml-2 text-sm tracking-wide truncate">Users</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?= base_url('admin/produk') ?>" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                    <span class="inline-flex justify-center items-center ml-4 w-5 h-5">
-                        <i class="fas fa-archive"></i>
-                    </span>
-                    <span class="ml-2 text-sm tracking-wide truncate">Produk</span>
-                    <!-- <span class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-blue-500 bg-indigo-50 rounded-full">New</span> -->
-                </a>
-            </li>
-            <li>
-                <a href="<?= base_url('admin/pesanan') ?>" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                    <span class="inline-flex justify-center items-center ml-4 w-5 h-5">
-                        <i class="fas fa-cart-arrow-down"></i>
-                        <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                                </svg> -->
-                        <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
-                                </svg> -->
-                    </span>
-                    <span class="ml-2 text-sm tracking-wide truncate">Pesanan</span>
-                </a>
-            </li>
-            <!-- <li>
-                        <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                            <span class="inline-flex justify-center items-center ml-4">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-                                </svg>
-                            </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Notifications</span>
-                            <span class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">1.2k</span>
-                        </a>
-                    </li> -->
-            
-        </ul>
-        <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright &copy; Kelompok 8 <br>12.4B.17 - UBSI Tasikmalaya 2021</p>
+<div id="sidebar" class='active'>
+    <div class="sidebar-wrapper active">
+        <div class="sidebar-header">
+            Kedai Seuhah
+        </div>
+        <div class="sidebar-menu">
+            <ul class="menu">
+                <li class='sidebar-title'>Main Menu</li>
+
+                <li class="sidebar-item <?php if($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == '') { echo 'active'; } ?> ">
+                    <a href="<?= base_url('admin/dashboard') ?>" class='sidebar-link'>
+                        <i data-feather="home" width="20"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+
+
+                <li class="sidebar-item <?php if($this->uri->segment(2) == 'users') { echo 'active'; } ?>">
+                    <a href="<?= base_url('admin/users') ?>" class='sidebar-link'>
+                        <i data-feather="users" width="20"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li class="sidebar-item <?php if($this->uri->segment(2) == 'produk') { echo 'active'; } ?>">
+                    <a href="<?= base_url('admin/produk') ?>" class='sidebar-link'>
+                        <i data-feather="layers" width="20"></i>
+                        <span>Produk</span>
+                    </a>
+                </li>
+                <li class="sidebar-item <?php if($this->uri->segment(2) == 'pesanan') { echo 'active'; } ?>">
+                    <a href="<?= base_url('admin/pesanan') ?>" class='sidebar-link'>
+                        <i data-feather="truck" width="20"></i>
+                        <span>Pesanan</span>
+                    </a>
+                </li>
+
+
+
+                <!-- <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i data-feather="triangle" width="20"></i>
+                                <span>Components</span>
+                            </a>
+
+                            <ul class="submenu ">
+                                <li>
+                                    <a href="component-alert.html">Alert</a>
+                                </li>
+
+                                <li>
+                                    <a href="component-badge.html">Badge</a>
+                                </li>
+
+                                <li>
+                                    <a href="component-breadcrumb.html">Breadcrumb</a>
+                                </li>
+
+                                <li>
+                                    <a href="component-buttons.html">Buttons</a>
+                                </li>
+
+                                <li>
+                                    <a href="component-card.html">Card</a>
+                                </li>
+
+                                <li>
+                                    <a href="component-carousel.html">Carousel</a>
+                                </li>
+
+                                <li>
+                                    <a href="component-dropdowns.html">Dropdowns</a>
+                                </li>
+
+                                <li>
+                                    <a href="component-list-group.html">List Group</a>
+                                </li>
+
+                                <li>
+                                    <a href="component-modal.html">Modal</a>
+                                </li>
+
+                                <li>
+                                    <a href="component-navs.html">Navs</a>
+                                </li>
+
+                                <li>
+                                    <a href="component-pagination.html">Pagination</a>
+                                </li>
+
+                                <li>
+                                    <a href="component-progress.html">Progress</a>
+                                </li>
+
+                                <li>
+                                    <a href="component-spinners.html">Spinners</a>
+                                </li>
+
+                                <li>
+                                    <a href="component-tooltips.html">Tooltips</a>
+                                </li>
+
+                            </ul>
+
+                        </li> -->
+
+
+
+            </ul>
+        </div>
+        <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
     </div>
 </div>
-<!-- ./Sidebar -->
+<div id="main">
