@@ -65,18 +65,49 @@ class Admin extends CI_Controller
 
     public function tambah_produk()
     {
-        $date = new DateTime();
+        $img = $this->input->post('foto');
+
+        $img = explode(';', $img);
+        $img = explode(',',$img[1]);
+
+        $img = base64_decode($img[1]);
+
+        $imgname = time().'.png';
+
+        // var_dump(FCPATH.'assets\\upload\\');
+        // return;
+        file_put_contents(FCPATH.'assets\\uploads\\'.$imgname, $img);
+
+
+        // Generate Kode Produk
+        $rowData = $this->AdminModel->get_produk()->num_rows() + 1;
+        $kodeProduk = 'KSP'.date('Y').date('m').$rowData;
+
         $data = array(
             'nama_produk' => $this->input->post('namaProduk'),
+            'kode_produk' => $kodeProduk,
             'harga' => $this->input->post('hargaProduk'),
-            'tgl_buat' => $date->getTimestamp(),
-            'tgl_edit' => $date->getTimestamp()
+            'foto' => $imgname,
+            'tgl_buat' => time(),
+            'tgl_edit' => time()
         );
 
+        // var_dump($data);
+        // return;
         $run = $this->AdminModel->add_produk($data);
         if($run)
         {
             redirect('admin/produk');
+        }
+    }
+
+    public function hapus_produk($id)
+    {
+        $run = $this->AdminModel->del_produk($id);
+
+        if($run)
+        {
+            redirect(base_url('admin/produk'));
         }
     }
 

@@ -37,6 +37,16 @@ class AdminModel extends CI_Model
         return $this->db->insert('produk',$data);
     }
 
+    public function del_produk(int $id = null)
+    {
+        $this->db->where('id_produk', $id);
+        return $this->db->delete('produk',);
+    }
+
+    // public function set_produk(int $id = null);
+    // {
+    //     //
+    // }
 
 
 

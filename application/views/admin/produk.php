@@ -30,14 +30,14 @@
                                 <?php $i = 1;
                                 foreach ($produk as  $u) : ?>
                                     <tr>
-                                        <td><?= $i ?></td>
+                                        <td><?= $i++ ?></td>
                                         <td class="text-bold-500"><?= $u->kode_produk ?></td>
                                         <td><?= $u->nama_produk ?></td>
                                         <td><?= $u->harga ?></td>
                                         <td><?= $u->foto ?></td>
                                         <td>
                                             <a class="btn btn-sm btn-warning" href="javascript:void(0)"><i data-feather="edit-2" width="20"></i></a>
-                                            <a class="btn btn-sm btn-danger" href="javascript:void(0)"><i data-feather="trash-2" width="20"></i></a>
+                                            <a class="btn btn-sm btn-danger" href='<?= base_url("admin/hapus_produk/{$u->id_produk}")?>'><i data-feather="trash-2" width="20"></i></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -68,19 +68,14 @@
                     <label class="form-label">Harga</label>
                     <input name="hargaProduk" type="number" class="form-control" placeholder="Masukan harga produk.." required>
                 </div>
-                <div class="mb-3">
-                    <div class="col-md-4 text-center">
-                        <div id="upload-demo" style="width:350px"></div>
-                        <button type="button" class="btn btn-secondary upload-result" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
 
                 <div class="mb-3">
                     <label class="form-label">Foto Produk</label>
-                    <input id="upload" type="file" class="form-control" required>
-                    
-
+                    <input id="upload" type="file" class="form-control mb-2" required>
+                    <div id="preview"></div>
                 </div>
+                <input id="fotoCrop" name='foto' hidden>
+
 
 
             </div>
@@ -91,26 +86,25 @@
         </form>
     </div>
 </div>
-
 <script>
     $(document).ready(function() {
-        uploadCrop = $('#upload-demo').croppie({
+        uploadCrop = $('#preview').croppie({
             enableExif: true,
             viewport: {
                 width: 324,
-                height: 200
+                height: 200,
             },
             boundary: {
                 width: 350,
-                height: 250,
-            }
+                height: 225
+            },
+            showZoomer: false,
+
         });
 
         $('#upload').on('change', function() {
-
-            console.log('berubah');
-            var reader = new FileReader();
-            reader.onload = function(e) {
+            var foto = new FileReader();
+            foto.onload = function(e) {
                 uploadCrop.croppie('bind', {
                     url: e.target.result
                 }).then(function() {
@@ -118,17 +112,21 @@
                 });
 
             }
-            reader.readAsDataURL(this.files[0]);
+            foto.readAsDataURL(this.files[0]);
+
+            
         });
 
-        $('.upload-result').on('click', function(ev) {
+        $('#preview').on('update.croppie', function(ev, cropData) {
             uploadCrop.croppie('result', {
-                type: 'html',
-                size: 'canvas'
-            }).then(function(resp) {
-
-                console.log(resp);
-            });
+                type: 'canvas',
+		        size: 'viewport'
+            }).then(function (resp) {
+                // console.log(resp);
+                $('#fotoCrop').val(resp);
+            })
         });
-    })
+
+
+    });
 </script>
