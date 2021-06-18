@@ -62,8 +62,8 @@ $route['login'] = 'Auth';
 $route['register'] = 'Auth/register';
 $route['logout'] = 'Auth/logout';
 $route['proses/(:any)'] = 'Auth/log/$1';
+$route['admin'] = 'Admin/dashboard';
 
-$route['admin/dashboard'] = 'Admin';
 
 
 $route['404_override'] = '';

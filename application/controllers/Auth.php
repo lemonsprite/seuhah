@@ -11,7 +11,7 @@ class Auth extends CI_Controller
             'title' => 'Login'
         );
         //Laman Login
-        $this->load->view('template/header', $data);
+        $this->load->view('home/template/header', $data);
         $this->load->view('login');
     }
 
@@ -24,7 +24,7 @@ class Auth extends CI_Controller
             'title' => 'Register'
         );
         //Laman Login
-        $this->load->view('template/header', $data);
+        $this->load->view('home/template/header', $data);
         $this->load->view('register');
     }
 
@@ -61,11 +61,14 @@ class Auth extends CI_Controller
                     $time = 3600 * 12;
 
                     $user = $callback->row_array();
+                    // return var_dump( password_verify($pwd, $user['pass']));
                     if(password_verify($pwd, $user['pass']))
                     {
                         $sess = array(
                             'username' => $user['email'],
+                            'nama' => $user['nama_depan'].' '.$user['nama_belakang'],
                             'role' => $user['role'],
+                            'id' => $user['id_user'],
                             'status' => TRUE
                         );
                         $this->session->set_userdata($sess);
@@ -146,7 +149,7 @@ class Auth extends CI_Controller
                         'nama_belakang' => strip_tags($this->input->post('nama_belakang')),
                         'email' => strip_tags($this->input->post('email')),
                         'pass' => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
-                        'role' => 1,
+                        'role' => 2,
                         'tgl_edit' => $date->getTimestamp(),
                         'tgl_buat' => $date->getTimestamp()
                     );
