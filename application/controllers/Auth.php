@@ -11,7 +11,7 @@ class Auth extends CI_Controller
             'title' => 'Login'
         );
         //Laman Login
-        $this->load->view('template/header', $data);
+        $this->load->view('home/template/header', $data);
         $this->load->view('login');
     }
 
@@ -24,7 +24,7 @@ class Auth extends CI_Controller
             'title' => 'Register'
         );
         //Laman Login
-        $this->load->view('template/header', $data);
+        $this->load->view('home/template/header', $data);
         $this->load->view('register');
     }
 

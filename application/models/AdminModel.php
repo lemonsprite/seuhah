@@ -22,11 +22,11 @@ class AdminModel extends CI_Model
         }
     }
 
-    public function get_produk(int $id = null)
+    public function get_produk(int $id = null, $limit = null)
     {
         if($id == null)
         {
-            return $this->db->get('produk');
+            return $this->db->get('produk', $limit);
         } else {
             $this->db->where('id_produk', $id);
             return $this->db->get_where('produk');
