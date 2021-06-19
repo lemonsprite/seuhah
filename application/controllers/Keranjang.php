@@ -45,4 +45,32 @@ class Keranjang extends CI_Controller
         );
         echo json_encode($data);
     }
+
+    public function del()
+    {
+        $data = array (
+            'rowid' => $this->input->post('row_id'),
+            'qty' => 0
+        );
+        $this->cart->update($data);
+        $this->load();
+    }
+    public function plus()
+    {
+        $data = array (
+            'rowid' => $this->input->post('row_id'),
+            'qty' => $this->input->post('qty')
+        );
+        $this->cart->update($data);
+        $this->load();
+    }
+    public function min()
+    {
+        $data = array (
+            'rowid' => $this->input->post('row_id'),
+            'qty' => $this->input->post('qty')
+        );
+        $this->cart->update($data);
+        $this->load();
+    }
 }

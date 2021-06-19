@@ -14,44 +14,118 @@
 
 
 <script>
+    function load(res) {
+        // Icon Tas Belanja Harga
+        $('#tasbelanja').html(new Intl.NumberFormat('de-DE').format(res['total']));
+
+        // Cart Konten
+        console.log(res);
+
+
+        var html = '';
+        for (var k in res.data) {
+            console.log(k, res.data[k])
+            // console.log(`${key} : ${res[key]['name']}`)
+            html +=
+                `<li class='list-group-item py-3 lh-tight'>` +
+                `<div class='row p-0'>` +
+                `<div class='col-md-8'>` +
+                `<div class='d-flex w-100 align-items-center justify-content-between'>` +
+                `<strong class='mb-1 fs-5'>${res.data[k].name}</strong>` +
+                `<small><span class='fs-4'>${res.data[k].qty}</span>x</small>` +
+                `</div>` +
+                `<div class='d-flex w-100 align-items-center justify-content-between'>` +
+                `<div class='mb-1 small fs-6'>Rp ${new Intl.NumberFormat('de-DE').format(res.data[k].price)}</div>` +
+                `<strong><span class='fs-5'>Rp ${new Intl.NumberFormat('de-DE').format(res.data[k].subtotal)}</strong>` +
+                `</div>` +
+                `</div>` +
+                `<div class='col-md-4 d-flex justify-content-end'>` +
+                `<div class='btn-group'>` +
+                `<div class='btn btn-group-vertical p-0'>` +
+                `<button class='additem btn btn-sm btn-success p-2 rounded-0' data-row='${res.data[k].rowid}' data-qyt='${res.data[k].qty}'><i class='fas fa-plus'></i></button>` +
+                `<button class='minitem btn btn-sm btn-warning p-2 rounded-0' data-row='${res.data[k].rowid}' data-qyt='${res.data[k].qty}'><i class='fas fa-minus'></i></button>` +
+                `</div>` +
+                `<button onclick='deleteItem()' class='delitem btn btn-sm btn-danger px-3 rounded-0' data-row='${res.data[k].rowid}'><i class='fas fa-trash'></i></button>` +
+                `</div>` +
+                `</div>` +
+                `</div>` +
+                `</li>`;
+        }
+        $('.cart-konten').html(html);
+
+        // Icon Badge
+        $('#countTas').html(res['count']);
+
+        // Icon Badge
+        $('#totalBayar').html(new Intl.NumberFormat('de-DE').format(res['total']));
+    }
     $(document).ready(function() {
+        $(document).on('click', '.delitem' , function() {
+            var rowid = $(this).data('row');
+
+            $.ajax({
+                url: "<?= base_url('keranjang/del') ?>",
+                method: "POST",
+                data: {
+                    row_id: rowid
+                },
+                success: function(data) {
+                    res = JSON.parse(data);
+                    // console.log(JSON.parse(data));
+                    load(res);
+                }
+            });
+        });
+
+        $(document).on('click', '.additem' , function() {
+            var rowid = $(this).data('row');
+            var qyt = $(this).data('qyt');
+        
+            $.ajax({
+                url: "<?= base_url('keranjang/plus') ?>",
+                method: "POST",
+                data: {
+                    row_id: rowid,
+                    qty: qyt+1
+                },
+                success: function(data) {
+                    res = JSON.parse(data);
+                    // console.log(JSON.parse(data));
+                    load(res);
+                }
+            });
+        });
+        $(document).on('click', '.minitem' , function() {
+            var rowid = $(this).data('row');
+            var qyt = $(this).data('qyt');
+        
+            $.ajax({
+                url: "<?= base_url('keranjang/plus') ?>",
+                method: "POST",
+                data: {
+                    row_id: rowid,
+                    qty: qyt-1
+                },
+                success: function(data) {
+                    res = JSON.parse(data);
+                    // console.log(JSON.parse(data));
+                    load(res);
+                }
+            });
+        });
+
         $.ajax({
             url: "<?= base_url('keranjang/load') ?>",
             success: function(data) {
                 res = JSON.parse(data);
-                console.log(JSON.parse(data));
+                // console.log(JSON.parse(data));
 
-                // Icon Tas Belanja Harga
-                $('#tasbelanja').html(new Intl.NumberFormat('de-DE').format(res['total']));
-
-                // Cart Konten
-                var html = '';
-                for (const key in res['data']) {
-                    if (res['data'].hasOwnProperty(key)) {
-                        // console.log(`${key} : ${res[key]['name']}`)
-                        html +=
-                            `<li class='list-group-item list-group-item-action py-3 lh-tight' aria-current='true'>` +
-                            `<div class='d-flex w-100 align-items-center justify-content-between'>` +
-                            `<strong class='mb-1 fs-5'>${res['data'][key]['name']}</strong>` +
-                            `<small><span class='fs-4'>${res['data'][key]['qty']}</span>x</small>` +
-                            `</div>` +
-                            `<div class='d-flex w-100 align-items-center justify-content-between'>` +
-                            `<div class='mb-1 small fs-6'>Rp ${new Intl.NumberFormat('de-DE').format(res['data'][key]['price'])}</div>` +
-                            `<strong><span class='fs-5'>Rp ${new Intl.NumberFormat('de-DE').format(res['data'][key]['subtotal'])}</strong>` +
-                            `</div>` +
-                            `</li>`;
-                    }
-                }
-                $('.cart-konten').html(html);
-
-                // Icon Badge
-                $('#countTas').html(res['count']);
-
-                // Icon Badge
-                $('#totalBayar').html(new Intl.NumberFormat('de-DE').format(res['total']));
+                load(res);
             }
 
-        })
+        });
+
+
         $('.add-cart').click(function() {
             // fungsi tambah ke chart
             var produk_id = $(this).data("idproduk");
@@ -69,39 +143,13 @@
                 },
                 success: function(data) {
                     res = JSON.parse(data);
-                    console.log(JSON.parse(data));
+                    // console.log(JSON.parse(data));
 
-                    // Icon Tas Belanja Harga
-                    $('#tasbelanja').html(new Intl.NumberFormat('de-DE').format(res['total']));
-
-                    // Cart Konten
-                    var html = '';
-                    for (const key in res['data']) {
-                        if (res['data'].hasOwnProperty(key)) {
-                            // console.log(`${key} : ${res[key]['name']}`)
-                            html +=
-                                `<li class='list-group-item list-group-item-action py-3 lh-tight' aria-current='true'>` +
-                                `<div class='d-flex w-100 align-items-center justify-content-between'>` +
-                                `<strong class='mb-1 fs-5'>${res['data'][key]['name']}</strong>` +
-                                `<small><span class='fs-4'>${res['data'][key]['qty']}</span>x</small>` +
-                                `</div>` +
-                                `<div class='d-flex w-100 align-items-center justify-content-between'>` +
-                                `<div class='mb-1 small fs-6'>Rp ${new Intl.NumberFormat('de-DE').format(res['data'][key]['price'])}</div>` +
-                                `<strong><span class='fs-5'>Rp ${new Intl.NumberFormat('de-DE').format(res['data'][key]['subtotal'])}</strong>` +
-                                `</div>` +
-                                `</li>`;
-                        }
-                    }
-                    $('.cart-konten').html(html);
-
-                    // Icon Badge
-                    $('#countTas').html(res['count']);
-
-                    // Icon Badge
-                    $('#totalBayar').html(new Intl.NumberFormat('de-DE').format(res['total']));
+                    load(res);
                 }
             });
         });
+
     });
 </script>
 </body>

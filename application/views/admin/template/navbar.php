@@ -7,10 +7,10 @@
         <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
             <li class="dropdown">
                 <a href="javascript:void(0)" data-bs-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" aria-expanded="false">
+                <div class="d-none d-md-block d-lg-inline-block me-3">Hi, <?= $this->session->nama ?></div>
                     <div class="avatar me-1">
                         <img src="assets/images/avatar/avatar-s-1.png" alt="" srcset="">
                     </div>
-                    <div class="d-none d-md-block d-lg-inline-block">Hi, <?= $user['nama_depan'] ?></div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
