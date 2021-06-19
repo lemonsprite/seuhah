@@ -6,7 +6,7 @@
 !*/cache/.htaccess
 
 user_guide/
-assets/uploads/*
+# assets/uploads/*
 
 #codeigniter 3
 application/logs/*

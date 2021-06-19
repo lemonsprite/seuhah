@@ -56,7 +56,11 @@
                         <div class="col-lg-3">
                             <a href="#">
                                 <div class="w-100">
-                                    <img class="rounded" width="100%" src="<?= base_url("assets/uploads/{$p->foto}"); ?>">
+                                    <?php if($p->foto == null): ?>
+                                        <img class="rounded" width="100%" src="<?= base_url("assets/uploads/default.png"); ?>">
+                                    <?php else: ?>
+                                        <img class="rounded" width="100%" src="<?= base_url("assets/uploads/{$p->foto}"); ?>">
+                                    <?php endif; ?>
                                 </div>
                             </a>
                             <div class="d-flex pt-2 align-items-center justify-content-between mb-4">

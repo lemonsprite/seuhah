@@ -14,7 +14,7 @@
                 <form class="card-body p-4" action="<?= base_url('admin/update_produk') ?>" method="POST">
                     <input name="id_produk" value="<?= $produk->id_produk ?>" hidden>
                     <input name="currFoto" value="<?= $produk->foto ?>" hidden>
-                    <input id="fotoCrop" name="foto" value="">
+                    <input id="fotoCrop" name="foto" value="" hidden>
                     <div class="row gx-5">
                         <div class="col-md-7">
                             <div class="row">
