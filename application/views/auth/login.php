@@ -71,8 +71,8 @@
         <?php if ($this->session->tempdata('pesan') != NULL) : ?>
             <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header bg-info text-white">
-                    <strong class="me-auto">Kedai Seuhah</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    <strong class="me-auto">Notifikasi</strong>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body">
                     <?= $this->session->tempdata('pesan') ?>

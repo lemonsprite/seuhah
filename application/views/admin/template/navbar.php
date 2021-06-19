@@ -1,4 +1,4 @@
-<nav class="navbar navbar-header navbar-expand navbar-light">
+<nav class="navbar navbar-header navbar-expand navbar-light bg-white shadow-xs border-bottom sticky-top">
     <a class="sidebar-toggler" href="javascript:void(0)"><span class="navbar-toggler-icon"></span></a>
     <button class="btn navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
