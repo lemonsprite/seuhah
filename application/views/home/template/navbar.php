@@ -1,8 +1,8 @@
 <nav class="navbar navbar-header navbar-expand navbar-light shadow-sm bg-white sticky-top">
     <div class="container">
-        <a class="navbar-brand d-flex" href="<?= base_url() ?>">
+        <a class="navbar-brand d-flex align-items-center" href="<?= base_url() ?>">
             <div class="me-3"><i class="fas fa-store fs-4"></i></div>
-            <h4>Kedai Seuhah</h4>
+            <h4 class='mb-0'>Kedai Seuhah</h4>
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav d-flex align-items-center ms-auto">

@@ -188,4 +188,13 @@ class Admin extends CI_Controller
     {
         unlink(FCPATH.'assets\\uploads\\'.$name);
     }
+
+    /**
+     * Logout
+     */
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url());
+    }
 }

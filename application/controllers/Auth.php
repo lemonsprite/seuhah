@@ -2,17 +2,81 @@
 
 class Auth extends CI_Controller
 {
-    /**
-     * Tampilan Login sebagai default Controller Auth
-     */
+    public function __construct()
+    {
+        parent::__construct();
+        if ($this->session->status != false)
+        {
+            redirect('home');
+        }
+    }
+
+
+
     public function index()
     {
-        $data = array(
-            'title' => 'Login'
-        );
-        //Laman Login
-        $this->load->view('home/template/header', $data);
-        $this->load->view('login');
+        if (isset($_POST))
+        {
+            // New Logic
+            $this->form_validation->set_rules('email', 'Email', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_error_delimiters('<div id="liveToast" class="toast hide mb-3" role="alert" aria-live="assertive" aria-atomic="true"><div class="toast-header bg-info text-white"><strong class="me-auto">Notifikasi</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button></div><div class="toast-body">', '</div></div>');
+            $this->form_validation->set_message('required', '%s tidak boleh kosong!');
+
+            if ($this->form_validation->run() === FALSE)
+            {
+                $this->load->view('auth/login');
+            }
+            else
+            {
+                // var_dump('berhasil');
+                $u = $this->input->post('email');
+                $p = $this->input->post('password');
+
+                $data = array(
+                    'email' => $u
+                );
+
+                // Ambil data sesuai email di tbl user
+                $cek = $this->AuthModel->auth($data);
+                // var_dump($cek);
+                // return;
+                // Kalu callback bukan false cek password
+                if ($cek != false)
+                {
+                    if (password_verify($p, $cek->pass))
+                    {
+                        $sess = array(
+                            'email' => $cek->email,
+                            'nama' => $cek->nama_depan . ' ' . $cek->nama_belakang,
+                            'role' => $cek->role,
+                            'id' => $cek->id_user,
+                            'status' => TRUE
+                        );
+                        $time = 3600 * 4; // 4 Jam
+                        $this->session->set_userdata($sess);
+                        $this->session->mark_as_temp(array('username', 'status', 'nama', 'role', 'id'), $time);
+
+                        if ($this->session->status == TRUE)
+                            redirect('home');
+                    }
+                    else
+                    {
+                        $this->session->set_tempdata('pesan', 'Email atau Password salah silahkan coba lagi.', 5);
+                        $this->load->view('auth/login');
+                    }
+                }
+                else
+                {
+                    $this->session->set_tempdata('pesan', 'User tidak ditemukan. silahkan coba lagi.', 5);
+                    $this->load->view('auth/login');
+                }
+            }
+        }
+        else
+        {
+            $this->load->view('auth/login');
+        }
     }
 
     /**
@@ -20,154 +84,48 @@ class Auth extends CI_Controller
      */
     public function register()
     {
-        $data = array(
-            'title' => 'Register'
-        );
-        //Laman Login
-        $this->load->view('home/template/header', $data);
-        $this->load->view('register');
-    }
 
+        if (isset($_POST))
+        {
+            // New Logic
+            $this->form_validation->set_rules('namaDepan', 'Nama Depan', 'required|trim');
+            $this->form_validation->set_rules('namaBelakang', 'Nama Belakang', 'required|trim');
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]|trim');
+            $this->form_validation->set_rules('pass1', 'Password', 'required|matches[pass2]|trim');
+            $this->form_validation->set_rules('pass2', 'Password Verifikasi', 'required|matches[pass1]|trim');
 
-    /**
-     * Fungsi Proses Login
-     */
-    public function log($data = 'masuk')
-    {
-        switch ($data) {
-            default:
-                // Login eksekusi
-                // database tabel user belum ada
+            $this->form_validation->set_error_delimiters('<div id="liveToast" class="toast hide mb-3" role="alert" aria-live="assertive" aria-atomic="true"><div class="toast-header bg-info text-white"><strong class="me-auto">Notifikasi</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button></div><div class="toast-body">', '</div></div>');
+            $this->form_validation->set_message('required', '{field} tidak boleh kosong!');
+            $this->form_validation->set_message('valid_email', '{field} tidak valid!');
+            $this->form_validation->set_message('is_unique', '{field} sudah terdaftar!');
+            $this->form_validation->set_message('matches', 'Password tidak sama!');
+
+            if ($this->form_validation->run() === FALSE)
+            {
+                $this->load->view('auth/register');
+            }
+            else
+            {
+                $p = $this->input->post('pass1');
+
+                $encrypt = password_hash($p, PASSWORD_DEFAULT);
                 $data = array(
-                    'email' => $this->input->post('email')
+                    'nama_depan' => $this->input->post('namaDepan'),
+                    'nama_belakang' => $this->input->post('namaBelakang'),
+                    'email' => $this->input->post('email'),
+                    'pass' => $encrypt,
+                    'role' => 2,
+                    'tgl_edit' => time(),
+                    'tgl_buat' => time()
                 );
-
-                $pwd = $this->input->post('password');
-                $callback = $this->AuthModel->auth($data);
-                
-                // return var_dump($callback->row_array());
-
-                if ($callback == false) {
-                    // Login Gagal
-                    redirect(base_url('login'));
-                } else {
-                    /**
-                     * Login Berhasil
-                     * - Set Session
-                     * - Redirect ke Landing
-                     */
-
-                    // Durasi Session (12 jam)
-                    $time = 3600 * 12;
-
-                    $user = $callback->row_array();
-                    // return var_dump( password_verify($pwd, $user['pass']));
-                    if(password_verify($pwd, $user['pass']))
-                    {
-                        $sess = array(
-                            'username' => $user['email'],
-                            'nama' => $user['nama_depan'].' '.$user['nama_belakang'],
-                            'role' => $user['role'],
-                            'id' => $user['id_user'],
-                            'status' => TRUE
-                        );
-                        $this->session->set_userdata($sess);
-                        $this->session->mark_as_temp(array('username', 'status'), $time);
-    
-                        if ($_SESSION['status'] == true) {
-                            redirect(base_url('home'));
-                        }
-                    }
-                    redirect(base_url('login'));
-                }
-                break;
-            case 'daftar':
-                // Daftar Eksekusi
-
-
-                /**
-                 * Form Rules
-                 */
-                $this->form_validation->set_rules(
-                    'nama_depan',
-                    'Nama_Depan',
-                    'required|trim',
-                    array(
-                        'required' => 'Nama Harus Diisi'
-                    )
-                );
-
-                $this->form_validation->set_rules(
-                    'nama_belakang',
-                    'Nama_Belakang',
-                    'required|trim',
-                    array(
-                        'required' => 'Nama Harus Diisi'
-                    )
-                );
-
-                $this->form_validation->set_rules(
-                    'email',
-                    'Email',
-                    'required|valid_email|is_unique[users.email]',
-                    array(
-                        'required' => 'Email Harus Diisi',
-                        'email' => 'Email tidak valid',
-                    )
-                );
-
-                $this->form_validation->set_rules(
-                    'password',
-                    'Password',
-                    'required|matches[password2]',
-                    array(
-                        'required' => 'Email Harus Diisi',
-                        'matches' => 'Password tidak sama'
-                    )
-                );
-
-                $this->form_validation->set_rules(
-                    'password2',
-                    'Password2',
-                    'required|matches[password]',
-                    array(
-                        'required' => 'Password harus Diisi',
-                        'matches' => 'Password tidak sama'
-                    )
-                );
-
-                if ($this->form_validation->run() == false) {
-                    // error
-                    $this->register();
-                } else {
-                    // jalan
-
-                    $date = new DateTime();
-
-                    $data = array(
-                        'nama_depan' => strip_tags($this->input->post('nama_depan')),
-                        'nama_belakang' => strip_tags($this->input->post('nama_belakang')),
-                        'email' => strip_tags($this->input->post('email')),
-                        'pass' => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
-                        'role' => 2,
-                        'tgl_edit' => $date->getTimestamp(),
-                        'tgl_buat' => $date->getTimestamp()
-                    );
-                    
-                    $this->UserModel->add_user($data);
-                    $this->session->set_flashdata('pesan', '<div class="bg-blue-200 p-4 mt-2">Akun anda berhasil dibuat!</div></div>');
-                    redirect(base_url('login'));
-                }
-                break;
+                $this->UserModel->add_user($data);
+                $this->session->set_tempdata('pesan', 'User telah didaftarkan!.', 5);
+            }
+        }
+        else
+        {
+            $this->load->view('auth/register');
         }
     }
 
-    /**
-     * Logout
-     */
-    public function logout()
-    {
-        $this->session->sess_destroy();
-        redirect(base_url());
-    }
 }
