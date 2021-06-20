@@ -3,6 +3,8 @@
 class Home extends CI_Controller
 {
 
+    private $ongkir =  10000;
+  
     /** 
      * Tampilan default Kontroller Home (Landing Page)
      */
@@ -133,16 +135,25 @@ class Home extends CI_Controller
     
     public function checkout()
     {
-        $data = array(
-            'user' => $this->AdminModel->get_user($this->session->iduser)->row(),
-            'cart' => $this->cart->contents()
-        );
-
-        $this->load->view('home/template/header');
-        $this->load->view('home/template/navbar');
-        $this->load->view('home/checkout', $data);
-        $this->load->view('home/template/cart');
-        $this->load->view('home/template/footer');
+        if (count($this->cart->contents()) === 0) 
+        {
+            redirect('home');
+        }
+        else
+        {
+            $data = array(
+                'user' => $this->AdminModel->get_user($this->session->iduser)->row(),
+                'cart' => $this->cart->contents(),
+                'ongkir' => $this->ongkir,
+                'total' => $this->cart->total() + $this->ongkir
+            );
+                
+            $this->load->view('home/template/header');
+            $this->load->view('home/template/navbar');
+            $this->load->view('home/checkout', $data);
+            $this->load->view('home/template/cart');
+            $this->load->view('home/template/footer');
+        }
     }
     
     public function invoice_commit()
@@ -178,6 +189,6 @@ class Home extends CI_Controller
        $this->load->view('home/pembayaran');
        $this->load->view('home/template/cart');
        $this->load->view('home/template/footer');
-        $this->load->view('home/pembayaran');
+    
     }
 }

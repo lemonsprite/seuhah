@@ -76,7 +76,7 @@ class AdminModel extends CI_Model
 
     public function get_invoice($id = null, $limit = null)
     {
-        $this->db->join('invoice_detail', 'invoice.id=invoice_detail.id_invoice');
+        // $this->db->join('invoice_detail', 'invoice.id=invoice_detail.id_invoice');
         $this->db->join('users', 'invoice.id_user=users.id_user');
 
         if ($id == null)

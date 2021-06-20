@@ -28,13 +28,14 @@
                         <div>
                             <h6 class="my-0 fw-bold">Ongkos kirim</h6>
                         </div>
-                        <strong>$12</strong>
+                        <strong><?= $ongkir; ?></strong>
                     </li>
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
                             <h6 class="my-0 fw-bold">Total belanja</h6>
                         </div>
-                        <strong>$12</strong>
+                        <strong><?php echo $total; ?></strong>
+                        
                     </li>
                 </ul>
 
@@ -45,7 +46,7 @@
             <!-- Form -->
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3 text-primary">Alamat pengihan</h4>
-                <form class="needs-validation" action="<?php echo base_url('home/pesan_commit'); ?>" method="POST">
+                <form class="needs-validation" action="<?php echo base_url('tagihan'); ?>" method="POST">
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label>Nama Depan</label>

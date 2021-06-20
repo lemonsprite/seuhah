@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav d-flex align-items-center ms-auto">
                 <li class="position-relative me-4 ">
-                    <?php if ($this->uri->segment(1) == 'checkout') : ?>
+                    <?php if ($this->uri->segment(1) == 'checkout' || $this->uri->segment(1) == 'tagihan') : ?>
                     <?php else : ?>
                         <button class="btn btn-dark text-white position-relative" data-bs-toggle="offcanvas" data-bs-target="#cart" role="button" aria-controls="cart">
                             <i class="fas fa-shopping-bag me-3"></i>
