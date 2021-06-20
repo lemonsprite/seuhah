@@ -143,6 +143,10 @@ class Home extends CI_Controller
 
     public function pesan_commit()
     {
+        $this->load->view('home/template/header');
+        $this->load->view('home/template/navbar');
        $this->load->view('home/pembayaran');
+       $this->load->view('home/template/cart');
+       $this->load->view('home/template/footer');
     }
 }
