@@ -130,4 +130,29 @@ class Home extends CI_Controller
         if(file_exists($file))
             unlink($file);
     }
+
+
+    public function invoice_commit()
+    {
+        // Regen Kode Pembayaran atau Invoice
+        $rw = $this->AdminModel->get_invoice()->num_rows();
+        $kode = "KSI".date('Y').date('m').$rw+1;
+
+
+        // Masukan ke Tabel Transaksi
+        // $this->ModelAdmin->add_invoice();
+        $data = array(
+            'no_pemabayaran' => $kode,
+            'waktu_pesan' => time(),
+            'total bayar' => null,
+            'alamat_pengiriman' => null,
+            'catatan' => null,
+            'status' => 0
+        );
+
+
+        // Masukan Detail Transaksina
+
+        var_dump($kode);
+    }
 }
