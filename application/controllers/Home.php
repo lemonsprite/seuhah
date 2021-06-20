@@ -128,9 +128,23 @@ class Home extends CI_Controller
     {
         $file = FCPATH . 'assets\\uploads\\users\\' . $name;
         if (file_exists($file))
-            unlink($file);
+        unlink($file);
     }
+    
+    public function checkout()
+    {
+        $data = array(
+            'user' => $this->AdminModel->get_user($this->session->iduser)->row(),
+            'cart' => $this->cart->contents()
+        );
 
+        $this->load->view('home/template/header');
+        $this->load->view('home/template/navbar');
+        $this->load->view('home/checkout', $data);
+        $this->load->view('home/template/cart');
+        $this->load->view('home/template/footer');
+    }
+    
     public function invoice_commit()
     {
         // Regen Kode Pembayaran atau Invoice
@@ -155,15 +169,7 @@ class Home extends CI_Controller
         var_dump($kode);
     }
 
-    public function checkout()
-    {
-        $this->load->view('home/template/header');
-        $this->load->view('home/template/navbar');
-        $this->load->view('home/checkout');
-        $this->load->view('home/template/cart');
-        $this->load->view('home/template/footer');
-    }
-    
+
 
     public function pesan_commit()
     {
