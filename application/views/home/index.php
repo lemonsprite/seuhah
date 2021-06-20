@@ -6,6 +6,11 @@
     }
 </style>
 <div class="main-content container-fluid">
+    <div id="notif" class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+
+
+        
+    </div>
     <section class="row py-5 text-center banner">
         <div class=" py-5">
             <div class="col-lg-6 col-md-8 mx-auto py-5">

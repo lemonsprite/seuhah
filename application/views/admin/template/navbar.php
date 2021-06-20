@@ -6,16 +6,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
             <li class="dropdown">
-                <a href="javascript:void(0)" data-bs-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" aria-expanded="false">
-                <div class="d-none d-md-block d-lg-inline-block me-3">Hi, <?= $this->session->nama ?></div>
-                    <div class="avatar me-1">
-                        <img src="assets/images/avatar/avatar-s-1.png" alt="" srcset="">
+                <a href="javascript:void(0)" data-bs-toggle="dropdown" class="nav-link dropdown-toggle" aria-expanded="false">
+                    <div class="d-none d-md-block d-lg-inline-block me-3">Hi, <?= $user->nama_depan ?> <?= $user->nama_belakang ?></div>
+                    <div class="avatar avatar-lg me-1">
+                        <img class="shadow-sm" src="<?= base_url("assets/uploads/users/{$this->session->foto}") ?>">
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
-                    <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a>
-                    <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
+                    <a class="dropdown-item" href="<?= base_url() ?>"><i data-feather="home"></i> Laman Utama</a>
+                    <a class="dropdown-item" href="<?= base_url('home/profil') ?>"><i data-feather="user"></i> Profil</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="<?= base_url('logout') ?>"><i data-feather="log-out"></i> Logout</a>
                 </div>

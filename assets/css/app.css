@@ -277,13 +277,13 @@ footer {
 .avatar.avatar-lg .avatar-content, .avatar.avatar-lg img {
     width: 48px;
     height: 48px;
-    font-size: 1.2rem
+    font-size: 1.2rem;
 }
 
 .avatar.avatar-xl .avatar-content, .avatar.avatar-xl img {
     width: 60px;
     height: 60px;
-    font-size: 1.4rem
+    font-size: 1.4rem;
 }
 
 .btn .badge {

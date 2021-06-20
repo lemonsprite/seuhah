@@ -6,7 +6,7 @@
 <script src="<?= base_url('assets/js/app.js') ?>"></script>
 
 <script src="<?= base_url('assets/js/jquery.dataTables.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/dataTables.bootstrap5.min.js') ?>"></script>
+<!-- <script src="<?= base_url('assets/js/dataTables.bootstrap5.min.js') ?>"></script> -->
 <!-- <script src="<?= base_url('assets/js/Chart.min.js') ?>"></script> -->
 <!-- <script src="<?= base_url('assets/js/dashboard.js') ?>"></script> -->
 <!-- <script src="<?= base_url('assets/js/apexcharts.min.js') ?>"></script> -->
@@ -19,12 +19,12 @@
         $('#tasbelanja').html(new Intl.NumberFormat('de-DE').format(res['total']));
 
         // Cart Konten
-        console.log(res);
+        // console.log(res);
 
 
         var html = '';
         for (var k in res.data) {
-            console.log(k, res.data[k])
+            // console.log(k, res.data[k])
             // console.log(`${key} : ${res[key]['name']}`)
             html +=
                 `<li class='list-group-item py-3 lh-tight'>` +
@@ -45,7 +45,7 @@
                 `<button class='additem btn btn-sm btn-success p-2 rounded-0' data-row='${res.data[k].rowid}' data-qyt='${res.data[k].qty}'><i class='fas fa-plus'></i></button>` +
                 `<button class='minitem btn btn-sm btn-warning p-2 rounded-0' data-row='${res.data[k].rowid}' data-qyt='${res.data[k].qty}'><i class='fas fa-minus'></i></button>` +
                 `</div>` +
-                `<button onclick='deleteItem()' class='delitem btn btn-sm btn-danger px-3 rounded-0' data-row='${res.data[k].rowid}'><i class='fas fa-trash'></i></button>` +
+                `<button class='delitem btn btn-sm btn-danger px-3 rounded-0' data-row='${res.data[k].rowid}'><i class='fas fa-trash'></i></button>` +
                 `</div>` +
                 `</div>` +
                 `</div>` +
@@ -60,7 +60,8 @@
         $('#totalBayar').html(new Intl.NumberFormat('de-DE').format(res['total']));
     }
     $(document).ready(function() {
-        $(document).on('click', '.delitem' , function() {
+
+        $(document).on('click', '.delitem', function() {
             var rowid = $(this).data('row');
 
             $.ajax({
@@ -72,21 +73,22 @@
                 success: function(data) {
                     res = JSON.parse(data);
                     // console.log(JSON.parse(data));
+
                     load(res);
                 }
             });
         });
 
-        $(document).on('click', '.additem' , function() {
+        $(document).on('click', '.additem', function() {
             var rowid = $(this).data('row');
             var qyt = $(this).data('qyt');
-        
+
             $.ajax({
                 url: "<?= base_url('keranjang/plus') ?>",
                 method: "POST",
                 data: {
                     row_id: rowid,
-                    qty: qyt+1
+                    qty: qyt + 1
                 },
                 success: function(data) {
                     res = JSON.parse(data);
@@ -95,16 +97,16 @@
                 }
             });
         });
-        $(document).on('click', '.minitem' , function() {
+        $(document).on('click', '.minitem', function() {
             var rowid = $(this).data('row');
             var qyt = $(this).data('qyt');
-        
+
             $.ajax({
                 url: "<?= base_url('keranjang/plus') ?>",
                 method: "POST",
                 data: {
                     row_id: rowid,
-                    qty: qyt-1
+                    qty: qyt - 1
                 },
                 success: function(data) {
                     res = JSON.parse(data);
@@ -144,12 +146,12 @@
                 success: function(data) {
                     res = JSON.parse(data);
                     // console.log(JSON.parse(data));
-
                     load(res);
                 }
             });
         });
 
+        
     });
 </script>
 </body>

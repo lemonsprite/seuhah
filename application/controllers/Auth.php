@@ -47,10 +47,8 @@ class Auth extends CI_Controller
                     if (password_verify($p, $cek->pass))
                     {
                         $sess = array(
-                            'email' => $cek->email,
-                            'nama' => $cek->nama_depan . ' ' . $cek->nama_belakang,
-                            'role' => $cek->role,
                             'iduser' => $cek->id_user,
+                            'foto' => $cek->foto,
                             'status' => TRUE
                         );
                         $time = 3600 * 4; // 4 Jam
