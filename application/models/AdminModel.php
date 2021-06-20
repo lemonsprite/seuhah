@@ -27,6 +27,12 @@ class AdminModel extends CI_Model
         $this->db->where('id_user', $id);
         return $this->db->update('users', $data);
     }
+    
+    public function add_user(array $data)
+    {
+       $this->db->insert('users', $data);
+    }
+
 
 
 

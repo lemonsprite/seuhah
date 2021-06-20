@@ -28,6 +28,7 @@ class Home extends CI_Controller
             // 'produk' => $this->AdminModel->get_produk(null,8)->result(),
             'user' => $this->AdminModel->get_user($this->session->iduser)->row(),
         );
+
         // var_dump($data['user']->nama_depan);
         // return;
 

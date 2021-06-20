@@ -116,8 +116,9 @@ class Auth extends CI_Controller
                     'tgl_edit' => time(),
                     'tgl_buat' => time()
                 );
-                $this->UserModel->add_user($data);
+                $this->AdminModel->add_user($data);
                 $this->session->set_tempdata('pesan', 'User telah didaftarkan!.', 5);
+                redirect('login');
             }
         }
         else
