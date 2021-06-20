@@ -1,40 +1,27 @@
 <main>
     <div class="py-5 text-center">
-        <h2>Checkout form</h2>
+        <h2>Form Checkout</h2>
     </div>
     <div class="container">
         <div class="row g-5">
+            <!-- Karanjang -->
             <div class="col-md-5 col-lg-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-primary">Keranjang Anda</span>
-                    <span class="badge bg-primary rounded-pill">3</span>
+                    <span class="badge bg-primary rounded-pill"><?= count($cart) ?></span>
                 </h4>
                 <ul class="list-group mb-3">
+                
+                <?php foreach($cart as $c): ?>
+                <!-- <?= var_dump($c)?> -->
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
-                            <h6 class="my-0">Nama produk</h6>
-                            <small class="text-muted">Brief description</small>
+                            <h6 class="my-0"><strong><?= $c['name'] ?></strong> (<?= $c['qty'] ?>x)</h6>
+                            <small class="text-muted"></small>
                         </div>
-                        <span class="text-muted">$12</span>
+                        <span class="text-muted">Rp <?= number_format($c['subtotal'],0,',','.' )?></span>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Second product</h6>
-                            <small class="text-muted">Brief description</small>
-                        </div>
-                        <span class="text-muted">$8</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Third item</h6>
-                            <small class="text-muted">Brief description</small>
-                        </div>
-                        <span class="text-muted">$5</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (USD)</span>
-                        <strong>$20</strong>
-                    </li>
+                <?php endforeach; ?>
                 </ul>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between lh-sm">
@@ -51,52 +38,54 @@
                     </li>
                 </ul>
 
-            
+
             </div>
 
+
+            <!-- Form -->
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3 text-primary">Alamat pengihan</h4>
-                <form class="needs-validation" action="<?php echo base_url('home/pesan_commit'); ?>" method="POST"> 
+                <form class="needs-validation" action="<?php echo base_url('home/pesan_commit'); ?>" method="POST">
                     <div class="row g-3">
                         <div class="col-sm-6">
-                            <label for="firstName" class="form-label">Nama Depan</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                            <label>Nama Depan</label>
+                            <input name="namaDepan" class="form-control" placeholder="" value="<?= $user->nama_depan ?>">
                         </div>
 
                         <div class="col-sm-6">
-                            <label for="lastName" class="form-label">Nama Belakang</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                            <label>Nama Belakang</label>
+                            <input name="namaBelakang" class="form-control" placeholder="" value="<?= $user->nama_belakang ?>">
                         </div>
 
 
                         <div class="col-12">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                            <label>Nama Belakang</label>
+                            <input name="email" class="form-control" value="<?= $user->email ?>">
                         </div>
 
                         <div class="col-12">
-                            <label for="address" class="form-label">Alamat</label>
-                            <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-                            <div class="invalid-feedback">
-                                Masukan alamat pengiriman
-                            </div>
+                            <label>Alamat</label>
+                            <input name="alamat" class="form-control" placeholder="">
                         </div>
 
 
-                    <h4 class="mb-3 text-primary">Silahkan pilih metode pembayaran</h4>
+                        <h4 class="mb-3 text-primary">Silahkan pilih metode pembayaran</h4>
 
-                    <!-- Example split danger button -->
-                    <!-- Example single danger button -->
-                        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="pilih">
-                        <datalist id="datalistOptions">
-                        <option value="OVO - 083826718501">
-                        <option value="DANA - 089668087015">
-                        <option value="BRI - 1213242321">
-                        <option value="BCA - 293992888">
-                    </datalist>
-                     <hr class="my-4">
+                        <!-- Example split danger button -->
+                        <!-- Example single danger button -->
+                        <div class="col-12">
+                            <select class="form-select" >
+                                <option value="OVO - 083826718501">OVO - 083826718501</option>
+                                <option value="DANA - 089668087015">DANA - 089668087015</option>
+                                <option value="BRI - 1213242321">BRI - 1213242321</option>
+                                <option value="BCA - 293992888">BCA - 293992888</option>
+                            </select>
 
-                    <button class="w-100 btn btn-primary btn-lg mb-5" type="submit">Lanjutkan checkout</button>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <button class="w-100 btn btn-primary btn-lg mb-5" type="submit">Lanjutkan checkout</button>
                 </form>
             </div>
         </div>

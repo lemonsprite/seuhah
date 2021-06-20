@@ -21,16 +21,16 @@ class AdminModel extends CI_Model
             return $this->db->get('users');
         }
     }
-    
+
     public function set_user(array $data, $id)
     {
         $this->db->where('id_user', $id);
         return $this->db->update('users', $data);
     }
-    
+
     public function add_user(array $data)
     {
-       $this->db->insert('users', $data);
+        $this->db->insert('users', $data);
     }
 
 
@@ -41,10 +41,12 @@ class AdminModel extends CI_Model
 
     public function get_produk(int $id = null, $limit = null)
     {
-        if($id == null)
+        if ($id == null)
         {
             return $this->db->get('produk', $limit);
-        } else {
+        }
+        else
+        {
             $this->db->where('id_produk', $id);
             return $this->db->get_where('produk');
         }
@@ -52,7 +54,7 @@ class AdminModel extends CI_Model
 
     public function add_produk(array $data = null)
     {
-        return $this->db->insert('produk',$data);
+        return $this->db->insert('produk', $data);
     }
 
     public function del_produk(int $id = null)
@@ -63,7 +65,7 @@ class AdminModel extends CI_Model
 
     public function set_produk(int $id = null, array $data)
     {
-        return $this->db->update('produk', $data,array('id_produk' => $id));
+        return $this->db->update('produk', $data, array('id_produk' => $id));
     }
 
 
@@ -72,15 +74,30 @@ class AdminModel extends CI_Model
 
 
 
-    public function get_invoice(array $param = null, $limit = null)
+    public function get_invoice($id = null, $limit = null)
     {
-        if($param == null)
+        $this->db->join('invoice_detail', 'invoice.id=invoice_detail.id_invoice');
+        $this->db->join('users', 'invoice.id_user=users.id_user');
+
+        if ($id == null)
         {
             $this->db->select('*');
-            $this->db->join('users','invoice.id_user=users.id_user');
             return $this->db->get('invoice', $limit);
-        } else {
-            return $this->db->get_where('invoice', $param);
         }
+        else
+        {
+            $this->db->where('id_invoice', $id);
+            return $this->db->get('invoice', $limit);
+        }
+    }
+
+    public function add_invoice(array $data)
+    {
+        return $this->db->insert('invoice',$data);
+    }
+
+    public function add_invoiceDetail(array $data)
+    {
+        return $this->db->insert('invoice_detail',$data);
     }
 }

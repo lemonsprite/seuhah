@@ -7,12 +7,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav d-flex align-items-center ms-auto">
                 <li class="position-relative me-4 ">
-                    <button class="btn btn-dark text-white position-relative" data-bs-toggle="offcanvas" data-bs-target="#cart" role="button" aria-controls="cart">
-                        <i class="fas fa-shopping-bag me-3"></i>
-                        <span>Rp </span>
-                        <span id="tasbelanja">Keranjang</span>
-                    </button>
-                    <span id="countTas" class="badge bg-danger rounded-pill bg-primary position-absolute top-0 start-0 translate-middle" style="font-size: .8rem;">0</span>
+                    <?php if ($this->uri->segment(1) == 'checkout') : ?>
+                    <?php else : ?>
+                        <button class="btn btn-dark text-white position-relative" data-bs-toggle="offcanvas" data-bs-target="#cart" role="button" aria-controls="cart">
+                            <i class="fas fa-shopping-bag me-3"></i>
+                            <span>Rp </span>
+                            <span id="tasbelanja">Keranjang</span>
+                        </button>
+
+                        <span id="countTas" class="badge bg-danger rounded-pill bg-primary position-absolute top-0 start-0 translate-middle" style="font-size: .8rem;">0</span>
+                    <?php endif; ?>
                 </li>
                 <li class="dropdown">
                     <?php if (isset($_SESSION['status'])) : ?>

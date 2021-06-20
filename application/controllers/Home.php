@@ -96,7 +96,7 @@ class Home extends CI_Controller
     public function upload_avatar()
     {
         $data = array();
-        if($this->input->post('img') != null)
+        if ($this->input->post('img') != null)
         {
             $img = $this->input->post('img');
             $this->del_userimage($this->input->post('currFoto'));
@@ -112,34 +112,64 @@ class Home extends CI_Controller
     private function set_userimage($img)
     {
         $img = explode(';', $img);
-        $img = explode(',',$img[1]);
+        $img = explode(',', $img[1]);
 
         $img = base64_decode($img[1]);
 
-        $imgname = time().'.png';
+        $imgname = time() . '.png';
 
         // var_dump(FCPATH.'assets\\upload\\');
         // return;
-        file_put_contents(FCPATH.'assets\\uploads\\users\\'.$imgname, $img);
+        file_put_contents(FCPATH . 'assets\\uploads\\users\\' . $imgname, $img);
         return $imgname;
     }
 
     private function del_userimage($name)
     {
-        $file = FCPATH.'assets\\uploads\\users\\'.$name;
-        if(file_exists($file))
-            unlink($file);
+        $file = FCPATH . 'assets\\uploads\\users\\' . $name;
+        if (file_exists($file))
+        unlink($file);
     }
-
-    public function checkout()          
+    
+    public function checkout()
     {
+        $data = array(
+            'user' => $this->AdminModel->get_user($this->session->iduser)->row(),
+            'cart' => $this->cart->contents()
+        );
+
         $this->load->view('home/template/header');
         $this->load->view('home/template/navbar');
-        $this->load->view('home/checkout');
+        $this->load->view('home/checkout', $data);
         $this->load->view('home/template/cart');
         $this->load->view('home/template/footer');
-
     }
+    
+    public function invoice_commit()
+    {
+        // Regen Kode Pembayaran atau Invoice
+        $rw = $this->AdminModel->get_invoice()->num_rows();
+        $kode = "KSI" . date('Y') . date('m') . $rw + 1;
+
+
+        // Masukan ke Tabel Transaksi
+        // $this->ModelAdmin->add_invoice();
+        $data = array(
+            'no_pemabayaran' => $kode,
+            'waktu_pesan' => time(),
+            'total bayar' => null,
+            'alamat_pengiriman' => null,
+            'catatan' => null,
+            'status' => 0
+        );
+
+
+        // Masukan Detail Transaksina
+
+        var_dump($kode);
+    }
+
+
 
     public function pesan_commit()
     {
@@ -148,5 +178,6 @@ class Home extends CI_Controller
        $this->load->view('home/pembayaran');
        $this->load->view('home/template/cart');
        $this->load->view('home/template/footer');
+        $this->load->view('home/pembayaran');
     }
 }
