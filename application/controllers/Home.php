@@ -130,4 +130,19 @@ class Home extends CI_Controller
         if(file_exists($file))
             unlink($file);
     }
+
+    public function checkout()          
+    {
+        $this->load->view('home/template/header');
+        $this->load->view('home/template/navbar');
+        $this->load->view('home/checkout');
+        $this->load->view('home/template/cart');
+        $this->load->view('home/template/footer');
+
+    }
+
+    public function pesan_commit()
+    {
+       $this->load->view('home/pembayaran');
+    }
 }
