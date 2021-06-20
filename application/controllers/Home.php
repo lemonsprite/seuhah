@@ -96,7 +96,7 @@ class Home extends CI_Controller
     public function upload_avatar()
     {
         $data = array();
-        if($this->input->post('img') != null)
+        if ($this->input->post('img') != null)
         {
             $img = $this->input->post('img');
             $this->del_userimage($this->input->post('currFoto'));
@@ -112,31 +112,30 @@ class Home extends CI_Controller
     private function set_userimage($img)
     {
         $img = explode(';', $img);
-        $img = explode(',',$img[1]);
+        $img = explode(',', $img[1]);
 
         $img = base64_decode($img[1]);
 
-        $imgname = time().'.png';
+        $imgname = time() . '.png';
 
         // var_dump(FCPATH.'assets\\upload\\');
         // return;
-        file_put_contents(FCPATH.'assets\\uploads\\users\\'.$imgname, $img);
+        file_put_contents(FCPATH . 'assets\\uploads\\users\\' . $imgname, $img);
         return $imgname;
     }
 
     private function del_userimage($name)
     {
-        $file = FCPATH.'assets\\uploads\\users\\'.$name;
-        if(file_exists($file))
+        $file = FCPATH . 'assets\\uploads\\users\\' . $name;
+        if (file_exists($file))
             unlink($file);
     }
-
 
     public function invoice_commit()
     {
         // Regen Kode Pembayaran atau Invoice
         $rw = $this->AdminModel->get_invoice()->num_rows();
-        $kode = "KSI".date('Y').date('m').$rw+1;
+        $kode = "KSI" . date('Y') . date('m') . $rw + 1;
 
 
         // Masukan ke Tabel Transaksi
@@ -154,5 +153,20 @@ class Home extends CI_Controller
         // Masukan Detail Transaksina
 
         var_dump($kode);
+    }
+
+    public function checkout()
+    {
+        $this->load->view('home/template/header');
+        $this->load->view('home/template/navbar');
+        $this->load->view('home/checkout');
+        $this->load->view('home/template/cart');
+        $this->load->view('home/template/footer');
+    }
+    
+
+    public function pesan_commit()
+    {
+        $this->load->view('home/pembayaran');
     }
 }

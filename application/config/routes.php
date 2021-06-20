@@ -63,6 +63,7 @@ $route['register'] = 'Auth/register';
 $route['logout'] = 'Admin/logout';
 $route['proses/(:any)'] = 'Auth/log/$1';
 $route['admin'] = 'Admin/dashboard';
+$route['checkout'] = 'Home/checkout';
 
 
 
