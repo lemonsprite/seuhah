@@ -20,7 +20,7 @@ class Auth extends CI_Controller
             // New Logic
             $this->form_validation->set_rules('email', 'Email', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required');
-            $this->form_validation->set_error_delimiters('<div id="liveToast" class="toast hide mb-3" role="alert" aria-live="assertive" aria-atomic="true"><div class="toast-header bg-info text-white"><strong class="me-auto">Notifikasi</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button></div><div class="toast-body">', '</div></div>');
+            $this->form_validation->set_error_delimiters('<div id="liveToast" class="toast hide mb-3" role="alert" aria-live="assertive" aria-atomic="true"><div class="toast-header bg-info text-white"><strong class="me-auto">Notifikasi</strong><button type="button" class="btn-close text-white" data-bs-dismiss="toast" aria-label="Close"></button></div><div class="toast-body">', '</div></div>');
             $this->form_validation->set_message('required', '%s tidak boleh kosong!');
 
             if ($this->form_validation->run() === FALSE)
@@ -47,10 +47,8 @@ class Auth extends CI_Controller
                     if (password_verify($p, $cek->pass))
                     {
                         $sess = array(
-                            'email' => $cek->email,
-                            'nama' => $cek->nama_depan . ' ' . $cek->nama_belakang,
-                            'role' => $cek->role,
-                            'id' => $cek->id_user,
+                            'iduser' => $cek->id_user,
+                            'foto' => $cek->foto,
                             'status' => TRUE
                         );
                         $time = 3600 * 4; // 4 Jam

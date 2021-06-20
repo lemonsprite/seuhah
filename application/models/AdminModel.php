@@ -3,9 +3,9 @@
 class AdminModel extends CI_Model
 {
 
-    public function get_user(array $param = null)
+    public function get_user($id = null)
     {
-        if ($param == null)
+        if ($id == null)
         {
             $this->db->join('role', 'users.role=role.id_role', 'inner');
             $this->db->select('*, role.nama as role');
@@ -17,10 +17,21 @@ class AdminModel extends CI_Model
             $this->db->join('role', 'users.role=role.id_role', 'inner');
             $this->db->select('*, role.nama as role');
             $this->db->order_by('tgl_buat', 'DESC');
-            $this->db->where('id_user', $param['id']);
+            $this->db->where('id_user', $id);
             return $this->db->get('users');
         }
     }
+    
+    public function set_user(array $data, $id)
+    {
+        $this->db->where('id_user', $id);
+        return $this->db->update('users', $data);
+    }
+
+
+
+
+
 
     public function get_produk(int $id = null, $limit = null)
     {

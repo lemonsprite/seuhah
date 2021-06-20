@@ -16,7 +16,7 @@ class Admin extends CI_Controller
         // Dashboard
         $data = array(
             'title' => 'Dashboard',
-            'user' => $this->AdminModel->get_user(array('id' => $this->session->id))->row_array(),
+            'user' => $this->AdminModel->get_user($this->session->iduser)->row(),
             'member' => $this->AdminModel->get_user()->result(),
             'pesanan' => $this->AdminModel->get_invoice(null, 5)->result(),
             'memberCount' => $this->AdminModel->get_user()->num_rows(),
@@ -38,7 +38,7 @@ class Admin extends CI_Controller
     {
         $data = array(
             'title' => 'Users',
-            'user' => $this->AdminModel->get_user(array('id' => $this->session->id))->row_array(),
+            'user' => $this->AdminModel->get_user($this->session->iduser)->row(),
             'member' => $this->AdminModel->get_user()->result(),
         );
         $this->load->view('admin/template/header', $data);
@@ -52,7 +52,7 @@ class Admin extends CI_Controller
     {
         $data = array(
             'title' => 'Produk',
-            'user' => $this->AdminModel->get_user(array('id' => $this->session->id))->row_array(),
+            'user' => $this->AdminModel->get_user($this->session->iduser)->row(),
             'produk' => $this->AdminModel->get_produk()->result(),
         );
         $this->load->view('admin/template/header', $data);
@@ -106,7 +106,7 @@ class Admin extends CI_Controller
     {
         $data = array(
             'title' => 'Ubah Produk',
-            'user' => $this->AdminModel->get_user(array('id' => $this->session->id))->row_array(),
+            'user' => $this->AdminModel->get_user($this->session->iduser)->row(),
             'produk' => $this->AdminModel->get_produk($id)->row()
         );
 
@@ -158,7 +158,7 @@ class Admin extends CI_Controller
     {
         $data = array(
             'title' => 'Produk',
-            'user' => $this->AdminModel->get_user(array('id' => $this->session->id))->row_array(),
+            'user' => $this->AdminModel->get_user($this->session->iduser)->row(),
             'pesanan' => $this->AdminModel->get_invoice()->result(),
         );
         $this->load->view('admin/template/header', $data);

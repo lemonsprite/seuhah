@@ -6,6 +6,11 @@
     }
 </style>
 <div class="main-content container-fluid">
+    <div id="notif" class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+
+
+        
+    </div>
     <section class="row py-5 text-center banner">
         <div class=" py-5">
             <div class="col-lg-6 col-md-8 mx-auto py-5">
@@ -56,9 +61,9 @@
                         <div class="col-lg-3">
                             <a href="#">
                                 <div class="w-100">
-                                    <?php if($p->foto == null): ?>
+                                    <?php if ($p->foto == null) : ?>
                                         <img class="rounded" width="100%" src="<?= base_url("assets/uploads/default.png"); ?>">
-                                    <?php else: ?>
+                                    <?php else : ?>
                                         <img class="rounded" width="100%" src="<?= base_url("assets/uploads/{$p->foto}"); ?>">
                                     <?php endif; ?>
                                 </div>
@@ -71,7 +76,7 @@
                                     </h5>
                                 </div>
                                 <div class="text-right">
-                                    <a href="#" class="btn btn-success btn-sm"><i class="fas fa-shopping-cart"></i></a>
+                                    <button class="add-cart btn btn-success btn-sm" data-idproduk="<?= $p->id_produk ?>" data-namaproduk="<?= $p->nama_produk ?>" data-harga="<?= $p->harga ?>"><i class="fas fa-shopping-cart"></i></button>
                                 </div>
                             </div>
 
@@ -81,75 +86,75 @@
             </div>
 
         </section>
-        <section class="bg-dark py-5 row text-white">
-            <div class="col-md-12">
-                <div class="container mx-auto">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="mb-3 kelompok d-flex align-items-center">
-                                <i class="fas fa-store me-3 fs-4"></i>
-                                <h3 class="m-0 fs-3 text-white fw-bold">Kedai Seuhah</h3>
-                            </div>
-                            <style>
-                                .daftaranggota li {
-                                    margin-left: 1rem;
-                                }
 
-                                .daftaranggota li a {
-                                    color: white;
-                                    font-size: 1rem;
-                                }
-
-                                .daftaranggota li::after {
-                                    content: '|';
-                                    margin-left: 1rem;
-                                }
-
-                                .daftaranggota li:last-child::after {
-                                    content: '' !important;
-                                    margin-left: 1rem;
-                                }
-
-                                .daftaranggota li:first-child {
-                                    margin-left: 0;
-                                }
-                            </style>
-                            <ul class="daftaranggota mb-3" style="list-style: none; margin: 0; padding: 0; display: flex;">
-                                <li><a href="/">Acep Ghifar</a></li>
-                                <li><a href="/">Fadhila Akbar</a></li>
-                                <li><a href="/">Fajar Muharam</a></li>
-                                <li><a href="/">R. Noor Alfath</a></li>
-                                <li><a href="/">Ryaz Azhari</a></li>
-                            </ul>
-                            <div class="text-sm mt-4">
-                                Copyright &copy;
-                                <script>
-                                    let x = new Date();
-                                    document.write(x.getFullYear());
-                                </script> Kelompok 8 (12.4B.17)
-                            </div>
+    </div>
+    <section class="bg-dark py-5 row text-white">
+        <div class="col-md-12">
+            <div class="container mx-auto">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="mb-3 kelompok d-flex align-items-center">
+                            <i class="fas fa-store me-3 fs-4"></i>
+                            <h3 class="m-0 fs-3 text-white fw-bold">Kedai Seuhah</h3>
                         </div>
-                        <div class="col-md-3">
-                            <h3 class="m-0 text-white">Web Programming III</h3>
-                            <span>12.4B.17 - UBSI Tasikmalaya</span>
-                            <div class="sosial pt-3">
-                                <a href="https://www.instagram.com/ubsi_tasikmalaya/" class="text-white me-3">
-                                    <i class="fab fa-instagram fs-3"></i>
-                                </a>
-                                <a href="https://www.youtube.com/c/UBSIKampusKotaTasikmalaya" class="text-white me-3">
-                                    <i class="fab fa-youtube fs-3"></i>
-                                </a>
-                                <a href="https://twitter.com/UBSI_Tasik" class="text-white me-3">
-                                    <i class="fab fa-twitter fs-3"></i>
-                                </a>
-                            </div>
+                        <style>
+                            .daftaranggota li {
+                                margin-left: 1rem;
+                            }
+
+                            .daftaranggota li a {
+                                color: white;
+                                font-size: 1rem;
+                            }
+
+                            .daftaranggota li::after {
+                                content: '|';
+                                margin-left: 1rem;
+                            }
+
+                            .daftaranggota li:last-child::after {
+                                content: '' !important;
+                                margin-left: 1rem;
+                            }
+
+                            .daftaranggota li:first-child {
+                                margin-left: 0;
+                            }
+                        </style>
+                        <ul class="daftaranggota mb-3" style="list-style: none; margin: 0; padding: 0; display: flex;">
+                            <li><a href="/">Acep Ghifar</a></li>
+                            <li><a href="/">Fadhila Akbar</a></li>
+                            <li><a href="/">Fajar Muharam</a></li>
+                            <li><a href="/">R. Noor Alfath</a></li>
+                            <li><a href="/">Ryaz Azhari</a></li>
+                        </ul>
+                        <div class="text-sm mt-4">
+                            Copyright &copy;
+                            <script>
+                                let x = new Date();
+                                document.write(x.getFullYear());
+                            </script> Kelompok 8 (12.4B.17)
                         </div>
                     </div>
-
+                    <div class="col-md-3">
+                        <h3 class="m-0 text-white">Web Programming III</h3>
+                        <span>12.4B.17 - UBSI Tasikmalaya</span>
+                        <div class="sosial pt-3">
+                            <a href="https://www.instagram.com/ubsi_tasikmalaya/" class="text-white me-3">
+                                <i class="fab fa-instagram fs-3"></i>
+                            </a>
+                            <a href="https://www.youtube.com/c/UBSIKampusKotaTasikmalaya" class="text-white me-3">
+                                <i class="fab fa-youtube fs-3"></i>
+                            </a>
+                            <a href="https://twitter.com/UBSI_Tasik" class="text-white me-3">
+                                <i class="fab fa-twitter fs-3"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
             </div>
-        </section>
-    </div>
 
+        </div>
+    </section>
 </div>
