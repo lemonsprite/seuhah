@@ -28,13 +28,13 @@
                         <div>
                             <h6 class="my-0 fw-bold">Ongkos kirim</h6>
                         </div>
-                        <strong><?= $ongkir; ?></strong>
+                        <strong>Rp <?= number_format($ongkir,0,',','.' ) ?></strong>
                     </li>
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
                             <h6 class="my-0 fw-bold">Total belanja</h6>
                         </div>
-                        <strong><?php echo $total; ?></strong>
+                        <strong>Rp <?= number_format($total,0,',','.' ) ?></strong>
                         
                     </li>
                 </ul>
@@ -50,18 +50,18 @@
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label>Nama Depan</label>
-                            <input name="namaDepan" class="form-control" placeholder="" value="<?= $user->nama_depan ?>">
+                            <input name="namaDepan" class="form-control" placeholder="" value="<?= $user->nama_depan ?>" readonly>
                         </div>
 
                         <div class="col-sm-6">
                             <label>Nama Belakang</label>
-                            <input name="namaBelakang" class="form-control" placeholder="" value="<?= $user->nama_belakang ?>">
+                            <input name="namaBelakang" class="form-control" placeholder="" value="<?= $user->nama_belakang ?>" readonly>
                         </div>
 
 
                         <div class="col-12">
                             <label>Nama Belakang</label>
-                            <input name="email" class="form-control" value="<?= $user->email ?>">
+                            <input name="email" class="form-control" value="<?= $user->email ?>" readonly>
                         </div>
 
                         <div class="col-12">
@@ -70,16 +70,16 @@
                         </div>
 
 
-                        <h4 class="mb-3 text-primary">Silahkan pilih metode pembayaran</h4>
+                        <h4 class="mb-3 mt-4 text-primary">Silahkan pilih metode pembayaran</h4>
 
                         <!-- Example split danger button -->
                         <!-- Example single danger button -->
                         <div class="col-12">
                             <select class="form-select" >
-                                <option value="OVO - 083826718501">OVO - 083826718501</option>
-                                <option value="DANA - 089668087015">DANA - 089668087015</option>
-                                <option value="BRI - 1213242321">BRI - 1213242321</option>
-                                <option value="BCA - 293992888">BCA - 293992888</option>
+                                <option value="OVO - 083826718501">OVO</option>
+                                <option value="DANA - 089668087015">DANA</option>
+                                <option value="BRI - 1213242321">BRI</option>
+                                <option value="BCA - 293992888">BCA</option>
                             </select>
 
                         </div>

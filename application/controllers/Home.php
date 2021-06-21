@@ -4,7 +4,21 @@ class Home extends CI_Controller
 {
 
     private $ongkir =  10000;
-  
+    private $rekening = array(
+        'OVO' => array(
+            'Seuhah Corp.',
+            '08123450000'
+        ),
+        'DANA' => array(
+            'Seuhah Corp.',
+            '08123456789'
+        ),
+        'BRI' => array(
+            'Kedai Seuhah',
+            '4015-2424-2424-1242'
+        )
+    );
+
     /** 
      * Tampilan default Kontroller Home (Landing Page)
      */
@@ -69,7 +83,7 @@ class Home extends CI_Controller
                     'nama_belakang' => $this->input->post('namaBelakang'),
                 );
                 $this->AdminModel->set_user($data, $id);
-                $this->session->set_tempdata('pesan', 'User telah diubah!.', 5);
+                $this->session->set_tempdata('pesan', 'Data user telah berhasil diubah!.', 3);
 
                 if ($p != NULL && $p2 != NULL)
                 {
@@ -79,8 +93,8 @@ class Home extends CI_Controller
                         'pass' => $new
                     );
                     $this->AdminModel->set_user($in, $id);
+                    $this->session->set_tempdata('pesan', 'Data user dan kata sandi berhasil diubah!', 3);
                 }
-
                 redirect('home/profil');
             }
         }
@@ -130,32 +144,41 @@ class Home extends CI_Controller
     {
         $file = FCPATH . 'assets\\uploads\\users\\' . $name;
         if (file_exists($file))
-        unlink($file);
+            unlink($file);
     }
-    
+
     public function checkout()
     {
-        if (count($this->cart->contents()) === 0) 
+        if (count($this->cart->contents()) === 0)
         {
+            $this->session->set_tempdata('pesan', 'Keranjang masih kosong! tidak bisa cekout.', 3);
             redirect('home');
         }
         else
         {
-            $data = array(
-                'user' => $this->AdminModel->get_user($this->session->iduser)->row(),
-                'cart' => $this->cart->contents(),
-                'ongkir' => $this->ongkir,
-                'total' => $this->cart->total() + $this->ongkir
-            );
-                
-            $this->load->view('home/template/header');
-            $this->load->view('home/template/navbar');
-            $this->load->view('home/checkout', $data);
-            $this->load->view('home/template/cart');
-            $this->load->view('home/template/footer');
+            if ($this->session->iduser == null)
+            {
+                $this->session->set_tempdata('pesan', 'Silahkan masuk untuk melanjutkan', 3);
+                redirect('login');
+            }
+            else
+            {
+                $data = array(
+                    'user' => $this->AdminModel->get_user($this->session->iduser)->row(),
+                    'cart' => $this->cart->contents(),
+                    'ongkir' => $this->ongkir,
+                    'total' => $this->cart->total() + $this->ongkir
+                );
+
+                $this->load->view('home/template/header');
+                $this->load->view('home/template/navbar');
+                $this->load->view('home/checkout', $data);
+                $this->load->view('home/template/cart');
+                $this->load->view('home/template/footer');
+            }
         }
     }
-    
+
     public function invoice_commit()
     {
         // Regen Kode Pembayaran atau Invoice
@@ -184,11 +207,30 @@ class Home extends CI_Controller
 
     public function pesan_commit()
     {
+        // Regen Kode Pembayaran atau Invoice
+        $rw = $this->AdminModel->get_invoice()->num_rows();
+        $kode = "KSI" . date('Y') . date('m') . $rw + 1;
+
+
+        // Masukan ke Tabel Transaksi
+        // $this->ModelAdmin->add_invoice();
+        $data = array(
+            'no_pemabayaran' => $kode,
+            'waktu_pesan' => time(),
+            'total bayar' => null,
+            'alamat_pengiriman' => null,
+            'catatan' => null,
+            'status' => 0
+        );
+
+
+        // Masukan Detail Transaksina
+
+        var_dump($kode);
         $this->load->view('home/template/header');
         $this->load->view('home/template/navbar');
-       $this->load->view('home/pembayaran');
-       $this->load->view('home/template/cart');
-       $this->load->view('home/template/footer');
-    
+        $this->load->view('home/pembayaran');
+        $this->load->view('home/template/cart');
+        $this->load->view('home/template/footer');
     }
 }

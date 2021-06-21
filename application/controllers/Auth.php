@@ -55,18 +55,19 @@ class Auth extends CI_Controller
                         $this->session->set_userdata($sess);
                         $this->session->mark_as_temp(array('username', 'status', 'nama', 'role', 'id'), $time);
 
+                        $this->session->set_tempdata('pesan', 'Login berhasil!.', 3);
                         if ($this->session->status == TRUE)
                             redirect('home');
                     }
                     else
                     {
-                        $this->session->set_tempdata('pesan', 'Email atau Password salah silahkan coba lagi.', 5);
+                        $this->session->set_tempdata('pesan', 'Email atau Password salah silahkan coba lagi.', 3);
                         $this->load->view('auth/login');
                     }
                 }
                 else
                 {
-                    $this->session->set_tempdata('pesan', 'User tidak ditemukan. silahkan coba lagi.', 5);
+                    $this->session->set_tempdata('pesan', 'User tidak ditemukan. silahkan coba lagi.', 3);
                     $this->load->view('auth/login');
                 }
             }
@@ -117,7 +118,7 @@ class Auth extends CI_Controller
                     'tgl_buat' => time()
                 );
                 $this->AdminModel->add_user($data);
-                $this->session->set_tempdata('pesan', 'User telah didaftarkan!.', 5);
+                $this->session->set_tempdata('pesan', 'User telah didaftarkan!.', 3);
                 redirect('login');
             }
         }

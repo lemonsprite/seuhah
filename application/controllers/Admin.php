@@ -195,6 +195,7 @@ class Admin extends CI_Controller
     public function logout()
     {
         $this->session->sess_destroy();
+        $this->session->set_tempdata('pesan', 'Berhasil keluar!.', 3);
         redirect(base_url());
     }
 }
