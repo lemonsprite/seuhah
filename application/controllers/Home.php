@@ -5,17 +5,20 @@ class Home extends CI_Controller
 
     private $ongkir =  10000;
     private $rekening = array(
-        'OVO' => array(
-            'Seuhah Corp.',
-            '08123450000'
+        array(
+            'bank' => 'OVO',
+            'an' => 'Seuhah Corp.',
+            'norek' => '08123450000'
         ),
-        'DANA' => array(
-            'Seuhah Corp.',
-            '08123456789'
+        array(
+            'bank' => 'DANA',
+            'an' => 'Seuhah Corp.',
+            'norek' => '08123456789'
         ),
-        'BRI' => array(
-            'Kedai Seuhah',
-            '4015-2424-2424-1242'
+        array(
+            'bank' => 'BRI',
+            'an' => 'Kedai Seuhah',
+            'norek' => '4015-2424-2424-1242'
         )
     );
 
@@ -149,6 +152,9 @@ class Home extends CI_Controller
 
     public function checkout()
     {
+        $meta = array(
+            'title' => 'Checkout',
+        );
         if (count($this->cart->contents()) === 0)
         {
             $this->session->set_tempdata('pesan', 'Keranjang masih kosong! tidak bisa cekout.', 3);
@@ -167,10 +173,13 @@ class Home extends CI_Controller
                     'user' => $this->AdminModel->get_user($this->session->iduser)->row(),
                     'cart' => $this->cart->contents(),
                     'ongkir' => $this->ongkir,
-                    'total' => $this->cart->total() + $this->ongkir
+                    'total' => $this->cart->total() + $this->ongkir,
+                    'rekening' => $this->rekening
                 );
 
-                $this->load->view('home/template/header');
+
+                // return;
+                $this->load->view('home/template/header', $meta);
                 $this->load->view('home/template/navbar');
                 $this->load->view('home/checkout', $data);
                 $this->load->view('home/template/cart');
@@ -179,70 +188,133 @@ class Home extends CI_Controller
         }
     }
 
-    public function invoice_commit()
-    {
-        // Regen Kode Pembayaran atau Invoice
-        $rw = $this->AdminModel->get_invoice()->num_rows();
-        $kode = "KSI" . date('Y') . date('m') . $rw + 1;
-
-
-        // Masukan ke Tabel Transaksi
-        // $this->ModelAdmin->add_invoice();
-        $data = array(
-            'no_pemabayaran' => $kode,
-            'waktu_pesan' => time(),
-            'total bayar' => null,
-            'alamat_pengiriman' => null,
-            'catatan' => null,
-            'status' => 0
-        );
-
-
-        // Masukan Detail Transaksina
-
-        var_dump($kode);
-    }
-
 
 
     public function pesan_commit()
     {
-        // Regen Kode Pembayaran atau Invoice
-        $rw = $this->AdminModel->get_invoice()->num_rows();
-        $kode = "KSI" . date('Y') . date('m') . $rw + 1;
+        $this->form_validation->set_rules('alamat', 'Nama Depan', 'required|trim');
+        $this->form_validation->set_message('required', '{field} tidak boleh kosong!');
 
 
-        // Masukan ke Tabel Transaksi
-        // $this->ModelAdmin->add_invoice();
-        $data = array(
-            'no_pemabayaran' => $kode,
-            'waktu_pesan' => time(),
-            'total bayar' => null,
-            'alamat_pengiriman' => null,
-            'catatan' => null,
-            'status' => 0
-        );
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->session->set_tempdata('pesan', 'Alamat harus diisi!.', 3);
+            redirect('checkout');
+        }
+        else
+        {
+            $meta = array(
+                'title' => 'Invoice'
+            );
+
+            // Regen Kode
+            $metode = $this->input->post('metode');
+
+            $row = $this->AdminModel->get_invoice()->num_rows();
+            $md5 = substr(md5($metode), 0, 4);
+            $invoiceid = 'KSI' . $md5 . $row;
+
+            // Masukan ke Tabel Transaksi
+            // $this->ModelAdmin->add_invoice();
+            $data = array(
+                'no_invoice' => $invoiceid,
+                'waktu_pesan' => time(),
+                'total_bayar' => $this->input->post('total'),
+                'alamat_pengiriman' => $this->input->post('alamat'),
+                'catatan' => $this->input->post('catatan'),
+                'id_user' => $this->session->iduser,
+                'status' => 0
+            );
+
+            // Masuken data ka invoice
+            $this->AdminModel->add_invoice($data);
 
 
-        // Masukan Detail Transaksina
 
-        var_dump($kode);
-        $this->load->view('home/template/header');
-        $this->load->view('home/template/navbar');
-        $this->load->view('home/pembayaran');
-        $this->load->view('home/template/cart');
-        $this->load->view('home/template/footer');
-<<<<<<< HEAD
-=======
+
+
+            // Masukan item karanjjan kana detail
+            // input tiap item ka deital order
+            $this->AdminModel->get_invoice()->num_rows();
+            foreach ($this->cart->contents() as $c)
+            {
+                $detail = array(
+                    'qty' => $c['qty'],
+                    'id_produk' => $c['id'],
+                    'id_invoice' => $invoiceid,
+                );
+                $this->AdminModel->add_invoiceDetail($detail);
+            }
+            $this->cart->destroy();
+            // return;
+
+            // var_dump($data);
+            // return;
+            $this->load->view('home/template/header', $meta);
+            $this->load->view('home/template/navbar');
+            $this->load->view('home/pembayaran', $data);
+            $this->load->view('home/template/cart');
+            $this->load->view('home/template/footer');
+        }
     }
 
-    public function confirm()
+    public function confirm($param = null)
     {
-        $this->load->view('home/template/header');
+        $meta = array(
+            'title' => 'Upload Bukti',
+            'id' => $param
+        );
+        $this->load->view('home/template/header', $meta);
         $this->load->view('home/template/navbar');
         $this->load->view('home/up_bukti_bayar');
         $this->load->view('home/template/cart');
         $this->load->view('home/template/footer');
->>>>>>> origin/jayajay25/issue22
+    }
+
+    public function buktiup($param)
+    {
+        $config['upload_path']          = './assets/uploads/bukti/';
+        $config['allowed_types']        = 'jpg|png|jpeg';
+        $config['max_size']             = 2048;
+        $config['max_width']            = 10000;
+        $config['max_height']           = 10000;
+        $config['file_name']            = time();
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('bukti'))
+        {
+            $this->session->set_tempdata('pesan', $this->upload->display_errors(), 3);
+            redirect("riwayat/{$param}/konfirmasi");
+        }
+        else
+        {
+            $foto = $this->upload->data();
+            $filename = $foto['file_name'];
+
+            $data = array(
+                'bukti' => $filename,
+                'status' => 1
+            );
+
+            $this->session->set_tempdata('pesan', 'Foto berhasil diupload!', 3);
+            $this->AdminModel->set_invoice_bukti($param, $data);
+            // return;
+            redirect('riwayat');
+        }
+    }
+
+
+    public function user_trans()
+    {
+        $data = array(
+            'title' => 'Riwayat Transaksi',
+            'pesanan' => $this->AdminModel->get_invoice_byuser($this->session->iduser)->result()
+        );
+        $this->load->view('home/template/header', $data);
+        $this->load->view('home/template/navbar');
+        $this->load->view('home/usertrans', $data);
+        $this->load->view('home/template/cart');
+        $this->load->view('home/template/footer');
     }
 }

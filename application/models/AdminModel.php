@@ -91,13 +91,25 @@ class AdminModel extends CI_Model
         }
     }
 
+    public function get_invoice_byuser($id, $limit = null)
+    {
+        $this->db->join('users', 'invoice.id_user=users.id_user');
+        $this->db->where('invoice.id_user', $id);
+        return $this->db->get('invoice', $limit);
+    }
     public function add_invoice(array $data)
     {
-        return $this->db->insert('invoice',$data);
+        return $this->db->insert('invoice', $data);
     }
 
     public function add_invoiceDetail(array $data)
     {
-        return $this->db->insert('invoice_detail',$data);
+        return $this->db->insert('invoice_detail', $data);
+    }
+
+    public function set_invoice_bukti($id, $data)
+    {
+        $this->db->where('id_invoice', $id);
+        return $this->db->update('invoice', $data);
     }
 }

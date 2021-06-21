@@ -1,4 +1,5 @@
 <div class="toast-container position-fixed top-0 start-0 p-3" style="z-index: 20000">
+    <?= validation_errors() ?>
     <?php if ($this->session->tempdata('pesan') != NULL) : ?>
         <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header bg-info text-white">

@@ -65,8 +65,11 @@ $route['proses/(:any)'] = 'Auth/log/$1';
 $route['admin'] = 'Admin/dashboard';
 $route['checkout'] = 'Home/checkout';
 $route['tagihan'] = 'Home/pesan_commit';
-$route['konfirmasi'] = 'Home/confirm';
 
+
+$route['riwayat'] = 'Home/user_trans';
+$route['riwayat/(:any)/konfirmasi'] = 'Home/confirm/$1';
+$route['riwayat/upload/(:any)'] = 'Home/buktiup/$1';
 
 
 $route['404_override'] = '';
