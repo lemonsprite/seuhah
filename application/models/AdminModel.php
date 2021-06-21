@@ -112,4 +112,17 @@ class AdminModel extends CI_Model
         $this->db->where('id_invoice', $id);
         return $this->db->update('invoice', $data);
     }
+    
+    public function set_invoice_stat($param,$data)
+    {
+        $this->db->where('id_invoice', $param);
+        return $this->db->update('invoice', $data);
+    }
+    public function get_invoice_bynotrans($notrans)
+    {
+        $this->db->join('invoice_detail', 'invoice.no_invoice=invoice_detail.id_invoice');
+        $this->db->join('produk', 'produk.id_produk=invoice_detail.id_produk');
+        $this->db->where('invoice.no_invoice', $notrans);
+        return $this->db->get('invoice');
+    }
 }

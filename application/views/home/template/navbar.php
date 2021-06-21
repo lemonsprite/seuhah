@@ -24,7 +24,11 @@
                         <a href="javascript:void(0)" data-bs-toggle="dropdown" class="p-0 nav-link dropdown-toggle" aria-expanded="false">
                             <!-- <div class="d-none d-md-block d-lg-inline-block">Hi, </div> -->
                             <div class="avatar avatar-lg d-block">
-                                <img id="avatar" class="rounded-circle d-flex" src="<?= base_url("assets/uploads/users/{$this->session->foto}") ?>">
+                                <?php if ($this->session->foto == null) : ?>
+                                    <img id="avatar" class="rounded-circle d-flex" src="<?= base_url("assets/uploads/users/default.png") ?>">
+                                <?php else : ?>
+                                    <img id="avatar" class="rounded-circle d-flex" src="<?= base_url("assets/uploads/users/{$this->session->foto}") ?>">
+                                <?php endif; ?>
                             </div>
                         </a>
 
@@ -35,11 +39,10 @@
 
 
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="<?= base_url() ?>"><i data-feather="home"></i> Laman Utama</a>
-                        <a class="dropdown-item" href="<?= base_url('admin/dashboard') ?>"><i data-feather="grid"></i> Dashboard</a>
                         <a class="dropdown-item" href="<?= base_url('home/profil') ?>"><i data-feather="user"></i> Profil</a>
+                        <a class="dropdown-item" href="<?= base_url('admin/dashboard') ?>"><i data-feather="grid"></i> Dashboard</a>
                         <a class="dropdown-item" href="<?= base_url('riwayat') ?>"><i data-feather="clock"></i> Riwayat Transaksi</a>
-                        <a class="dropdown-item" href="<?= base_url('konfirmasi') ?>"><i data-feather="check-circle"></i> Konfirmasi Pembayaran</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?= base_url('logout') ?>"><i data-feather="log-out"></i> Logout</a>
                     </div>
                 </li>

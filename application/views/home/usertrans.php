@@ -28,11 +28,17 @@
                                                 <td>Rp <?= number_format($u->total_bayar, 0, ',', '.') ?></td>
                                                 <td><?= date('d-m-Y', $u->tgl_buat) ?></td>
                                                 <td>
-                                                    <?php if($u->status == 1):?>
+                                                    <?php if ($u->status == 4) : ?>
+                                                        <a class="btn btn-sm btn-dark" href="javascript:void(0)">Dibatalkan</a>
+                                                    <?php elseif ($u->status == 3) : ?>
+                                                        <a class="btn btn-sm btn-warning" href="<?= base_url("riwayat/{$u->id_invoice}/konfirmasi") ?>">Upload Ulang</a>
+                                                    <?php elseif ($u->status == 2) : ?>
+                                                        <a class="btn btn-sm btn-dark" href="javascript:void(0)" disabled>Sudah Dikirim</a>
+                                                    <?php elseif ($u->status == 1) : ?>
                                                         <a class="btn btn-sm btn-dark" href="javascript:void(0)" disabled>Menunggu Verifikasi</a>
-                                                    <?php else: ?>
-                                                        <a class="btn btn-sm btn-warning" href="<?= base_url("riwayat/{$u->id_invoice}/konfirmasi") ?>">Upload Bukti</a>
-                                                    <?php endif?>
+                                                    <?php elseif ($u->status == 0) : ?>
+                                                        <a class="btn btn-sm btn-dark" href="javascript:void(0)">Bukti Kosong</a>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

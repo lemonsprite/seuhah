@@ -48,6 +48,7 @@ class Auth extends CI_Controller
                     {
                         $sess = array(
                             'iduser' => $cek->id_user,
+                            'nama' => $cek->nama_depan.' '.$cek->nama_belakang,
                             'foto' => $cek->foto,
                             'status' => TRUE
                         );

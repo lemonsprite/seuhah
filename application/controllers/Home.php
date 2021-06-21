@@ -30,7 +30,7 @@ class Home extends CI_Controller
         $data = array(
             'title' => 'Home',
             'produk' => $this->AdminModel->get_produk(null, 8)->result(),
-            'user' => $this->AdminModel->get_user($this->session->id)->row_array()
+            'user' => $this->AdminModel->get_user($this->session->id)->row()
         );
 
         $this->load->view('home/template/header', $data);
@@ -240,6 +240,7 @@ class Home extends CI_Controller
             {
                 $detail = array(
                     'qty' => $c['qty'],
+                    'subtotal' => $c['subtotal'],
                     'id_produk' => $c['id'],
                     'id_invoice' => $invoiceid,
                 );
@@ -309,10 +310,11 @@ class Home extends CI_Controller
     {
         $data = array(
             'title' => 'Riwayat Transaksi',
-            'pesanan' => $this->AdminModel->get_invoice_byuser($this->session->iduser)->result()
+            'pesanan' => $this->AdminModel->get_invoice_byuser($this->session->iduser)->result(),
+            'user' => $this->AdminModel->get_user($this->session->iduser)->row()
         );
         $this->load->view('home/template/header', $data);
-        $this->load->view('home/template/navbar');
+        $this->load->view('home/template/navbar', $data);
         $this->load->view('home/usertrans', $data);
         $this->load->view('home/template/cart');
         $this->load->view('home/template/footer');
