@@ -38,7 +38,7 @@
                         <a class="dropdown-item" href="<?= base_url() ?>"><i data-feather="home"></i> Laman Utama</a>
                         <a class="dropdown-item" href="<?= base_url('admin/dashboard') ?>"><i data-feather="grid"></i> Dashboard</a>
                         <a class="dropdown-item" href="<?= base_url('home/profil') ?>"><i data-feather="user"></i> Profil</a>
-                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="<?= base_url('konfirmasi') ?>"><i data-feather="check-circle"></i>Konfirmasi Pembayaran</a>
                         <a class="dropdown-item" href="<?= base_url('logout') ?>"><i data-feather="log-out"></i> Logout</a>
                     </div>
                 </li>

@@ -65,8 +65,8 @@
                         </div>
 
                         <div class="col-12">
-                            <label>Alamat</label>
-                            <input name="alamat" class="form-control" placeholder="">
+                            <label for="alamat">Alamat</label>
+                            <input name="alamat" class="form-control" placeholder="Masukan alamat..">
                         </div>
 
 

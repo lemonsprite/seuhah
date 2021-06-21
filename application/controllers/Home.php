@@ -232,5 +232,17 @@ class Home extends CI_Controller
         $this->load->view('home/pembayaran');
         $this->load->view('home/template/cart');
         $this->load->view('home/template/footer');
+<<<<<<< HEAD
+=======
+    }
+
+    public function confirm()
+    {
+        $this->load->view('home/template/header');
+        $this->load->view('home/template/navbar');
+        $this->load->view('home/up_bukti_bayar');
+        $this->load->view('home/template/cart');
+        $this->load->view('home/template/footer');
+>>>>>>> origin/jayajay25/issue22
     }
 }
