@@ -227,4 +227,11 @@ class Admin extends CI_Controller
         $this->load->view('admin/pesanan_detail',$data);
         $this->load->view('admin/template/footer');
     }
+
+    public function userdelete($param)
+    {
+        $this->AdminModel->del_user($param);
+        $this->session->set_tempdata('pesan', 'User berhasil dihapus!', 3);
+        redirect('admin/users');
+    }
 }

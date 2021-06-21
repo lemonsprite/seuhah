@@ -66,6 +66,8 @@ $route['admin'] = 'Admin/dashboard';
 $route['checkout'] = 'Home/checkout';
 $route['tagihan'] = 'Home/pesan_commit';
 
+$route['admin/users/(:any)/hapus'] = 'Admin/userdelete/$1';
+
 $route['admin/pesanan/(:any)/terima'] = 'Admin/accorder/$1';
 $route['admin/pesanan/(:any)/tolak'] = 'Admin/rejorder/$1';
 $route['admin/pesanan/(:any)'] = 'Admin/orderdetail/$1';

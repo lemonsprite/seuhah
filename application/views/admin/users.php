@@ -28,8 +28,8 @@
                                         <td><?= $u->email ?></td>
                                         <td><?= $u->role ?></td>
                                         <td>
-                                            <a class="btn btn-sm btn-warning" href="javascript:void(0)"><i data-feather="edit-2" width="20"></i></a>
-                                            <a class="btn btn-sm btn-danger" href="javascript:void(0)"><i data-feather="trash-2" width="20"></i></a>
+                                            
+                                            <a onclick="{ confirm('Takin menghapus data ini?')}" class="btn btn-sm btn-danger" href="<?= base_url("admin/users/{$u->id_user}/hapus")?>"><i data-feather="trash-2" width="20"></i></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
