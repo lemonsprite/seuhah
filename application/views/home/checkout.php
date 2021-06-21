@@ -49,31 +49,28 @@
                 <form class="needs-validation" action="<?php echo base_url('tagihan'); ?>" method="POST">
                     <div class="row g-3">
                         <div class="col-sm-6">
-                            <label>Nama Depan</label>
+                            <label for="namaDepan">Nama Depan</label>
                             <input name="namaDepan" class="form-control" placeholder="" value="<?= $user->nama_depan ?>">
                         </div>
 
                         <div class="col-sm-6">
-                            <label>Nama Belakang</label>
+                            <label for="namaBelakang">Nama Belakang</label>
                             <input name="namaBelakang" class="form-control" placeholder="" value="<?= $user->nama_belakang ?>">
                         </div>
 
 
                         <div class="col-12">
-                            <label>Nama Belakang</label>
+                            <label for="email">Email</label>
                             <input name="email" class="form-control" value="<?= $user->email ?>">
                         </div>
 
                         <div class="col-12">
-                            <label>Alamat</label>
-                            <input name="alamat" class="form-control" placeholder="">
+                            <label for="alamat">Alamat</label>
+                            <input name="alamat" class="form-control" placeholder="Masukan alamat..">
                         </div>
 
 
                         <h4 class="mb-3 text-primary">Silahkan pilih metode pembayaran</h4>
-
-                        <!-- Example split danger button -->
-                        <!-- Example single danger button -->
                         <div class="col-12">
                             <select class="form-select" >
                                 <option value="OVO - 083826718501">OVO - 083826718501</option>

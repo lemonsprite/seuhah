@@ -65,6 +65,7 @@ $route['proses/(:any)'] = 'Auth/log/$1';
 $route['admin'] = 'Admin/dashboard';
 $route['checkout'] = 'Home/checkout';
 $route['tagihan'] = 'Home/pesan_commit';
+$route['konfirmasi'] = 'Home/confirm';
 
 
 
