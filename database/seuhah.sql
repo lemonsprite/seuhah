@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2021 at 07:30 AM
+-- Generation Time: Jun 22, 2021 at 10:18 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -32,8 +32,11 @@ USE `seuhah`;
 CREATE TABLE `invoice` (
   `id_invoice` int(11) NOT NULL,
   `no_invoice` varchar(64) NOT NULL,
-  `waktu_bayar` varchar(64) NOT NULL,
+  `waktu_pesan` varchar(64) NOT NULL,
   `total_bayar` varchar(64) NOT NULL,
+  `alamat_pengiriman` varchar(255) NOT NULL,
+  `catatan` varchar(255) DEFAULT NULL,
+  `bukti` varchar(64) NOT NULL,
   `id_user` int(11) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -45,11 +48,23 @@ CREATE TABLE `invoice` (
 --
 
 CREATE TABLE `invoice_detail` (
-  `id_detail` int(11) NOT NULL,
-  `qyt` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
   `subtotal` varchar(64) NOT NULL,
   `id_produk` varchar(11) NOT NULL,
   `id_invoice` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `keranjang`
+--
+
+CREATE TABLE `keranjang` (
+  `id_keranjang` int(11) NOT NULL,
+  `keranjang` blob NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `tgl_edit` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -64,6 +79,7 @@ CREATE TABLE `produk` (
   `nama_produk` varchar(64) NOT NULL,
   `harga` varchar(64) NOT NULL,
   `foto` varchar(128) NOT NULL,
+  `deskripsi_produk` varchar(255) DEFAULT NULL,
   `tgl_buat` varchar(64) NOT NULL,
   `tgl_edit` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -99,20 +115,11 @@ CREATE TABLE `users` (
   `nama_belakang` varchar(32) NOT NULL,
   `email` varchar(128) NOT NULL,
   `pass` varchar(128) NOT NULL,
-  `foto` blob NOT NULL,
+  `foto` varchar(128) DEFAULT NULL,
   `role` int(11) NOT NULL,
   `tgl_edit` varchar(128) DEFAULT NULL,
   `tgl_buat` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id_user`, `nama_depan`, `nama_belakang`, `email`, `pass`, `foto`, `role`, `tgl_edit`, `tgl_buat`) VALUES
-(1, 'Kenuk', 'Alfath', 'admin@admin.com', '$2y$10$Ri94zipW3f/byoUUn45qbeVAkjkmRvbskDKF1Kso.M9HVRiK0TBJe', '', 1, '1622733013', '1622733013'),
-(2, 'Steven', 'William', 'steven@mail.com', '$2y$10$gGtn/6/xQPnxucU7jmw1Qe4JkqSQ/Y64mWwhkVqD/e2q3Tq6yArsu', '', 2, '1623499366', '1623499366'),
-(5, 'Cuk', 'Jancuk', 'cukjancuk@mail.com', '$2y$10$tTBdGHPBjw50aWPlXg1bb.0YzjEpKgf7fA2kcb1JzmT6bCiR0c992', '', 2, '1623505522', '1623505522');
 
 --
 -- Indexes for dumped tables
@@ -125,10 +132,10 @@ ALTER TABLE `invoice`
   ADD PRIMARY KEY (`id_invoice`);
 
 --
--- Indexes for table `invoice_detail`
+-- Indexes for table `keranjang`
 --
-ALTER TABLE `invoice_detail`
-  ADD PRIMARY KEY (`id_detail`);
+ALTER TABLE `keranjang`
+  ADD PRIMARY KEY (`id_keranjang`);
 
 --
 -- Indexes for table `produk`
@@ -159,10 +166,10 @@ ALTER TABLE `invoice`
   MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `invoice_detail`
+-- AUTO_INCREMENT for table `keranjang`
 --
-ALTER TABLE `invoice_detail`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `keranjang`
+  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `produk`
@@ -180,7 +187,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
