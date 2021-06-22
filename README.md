@@ -1,8 +1,8 @@
-<h1 align="center">Seuhah App</h1>
+<h1 align="center">Kedai Seuhah App</h1>
 <h3 align="center">Aplikasi Web dengan Framework Codeigniter</h3>
 
 
-<p align='center'>Ini adalah aplikasi web yang dibuat menggunakan framework Codeigniter dan Tailwind CSS dan Bootstrap sebagai CSS framewok.</p>
+<p align='center'>Ini adalah aplikasi web yang dibuat menggunakan framework Codeigniter dengan Bootstrap 5 sebagai framework CSS.</p>
 
 <br>
 
