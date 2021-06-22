@@ -40,7 +40,9 @@
 
                     <div class="dropdown-menu dropdown-menu-end">
                         <a class="dropdown-item" href="<?= base_url('home/profil') ?>"><i data-feather="user"></i> Profil</a>
-                        <a class="dropdown-item" href="<?= base_url('admin/dashboard') ?>"><i data-feather="grid"></i> Dashboard</a>
+                        <?php if($this->session->role == 1):?>
+                            <a class="dropdown-item" href="<?= base_url('admin/dashboard') ?>"><i data-feather="grid"></i> Dashboard</a>
+                        <?php endif; ?>
                         <a class="dropdown-item" href="<?= base_url('riwayat') ?>"><i data-feather="clock"></i> Riwayat Transaksi</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?= base_url('logout') ?>"><i data-feather="log-out"></i> Logout</a>

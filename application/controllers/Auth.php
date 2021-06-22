@@ -49,12 +49,15 @@ class Auth extends CI_Controller
                         $sess = array(
                             'iduser' => $cek->id_user,
                             'nama' => $cek->nama_depan.' '.$cek->nama_belakang,
+                            'role' => $cek->role,
                             'foto' => $cek->foto,
                             'status' => TRUE
                         );
+                        // var_dump($sess);
+                        // die;
                         $time = 3600 * 4; // 4 Jam
                         $this->session->set_userdata($sess);
-                        $this->session->mark_as_temp(array('username', 'status', 'nama', 'role', 'id'), $time);
+                        $this->session->mark_as_temp(array('foto', 'status', 'nama', 'role', 'iduser'), $time);
 
                         $this->session->set_tempdata('pesan', 'Login berhasil!.', 3);
                         if ($this->session->status == TRUE)

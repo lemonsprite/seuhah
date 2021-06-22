@@ -319,4 +319,14 @@ class Home extends CI_Controller
         $this->load->view('home/template/cart');
         $this->load->view('home/template/footer');
     }
+
+    /**
+     * Logout
+     */
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        $this->session->set_tempdata('pesan', 'Berhasil keluar!.', 3);
+        redirect(base_url());
+    }
 }

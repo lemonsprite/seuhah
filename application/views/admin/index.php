@@ -52,7 +52,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-cente">
                     <h3 class='card-heading'>Users</h3>
-                    <a class="btn btn-sm btn-primary" href="javascript:void(0)">Lihat Semua Pesanan</a>
+                    <a class="btn btn-sm btn-primary" href="<?= base_url('admin/users')?>">Lihat Semua Pesanan</a>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
@@ -82,7 +82,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between items-align-center">
                     <h3 class='card-heading m-0'>Pesanan</h3>
-                    <a class="btn btn-sm btn-primary" href="javascript:void(0)">Lihat Semua Pesanan</a>
+                    <a class="btn btn-sm btn-primary" href="<?= base_url('admin/pesanan')?>">Lihat Semua Pesanan</a>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">

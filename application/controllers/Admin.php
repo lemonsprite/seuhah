@@ -9,6 +9,12 @@ class Admin extends CI_Controller
         {
             redirect(base_url('home'));
         }
+        // var_dump((int)$this->session->role);
+        // die;
+        if ((int)$this->session->role == 2 || !isset($this->session->role))
+        {
+            redirect(base_url('home'));
+        }
     }
 
     public function dashboard()
@@ -72,7 +78,7 @@ class Admin extends CI_Controller
 
         // Generate Kode Produk
         $rowData = $this->AdminModel->get_produk()->num_rows() + 1;
-        $kodeProduk = 'KSP'.date('Y').date('m').$rowData;
+        $kodeProduk = 'KSP' . date('Y') . date('m') . $rowData;
 
         $data = array(
             'nama_produk' => $this->input->post('namaProduk'),
@@ -86,7 +92,7 @@ class Admin extends CI_Controller
         // var_dump($data);
         // return;
         $run = $this->AdminModel->add_produk($data);
-        if($run)
+        if ($run)
         {
             redirect('admin/produk');
         }
@@ -96,7 +102,7 @@ class Admin extends CI_Controller
     {
         $run = $this->AdminModel->del_produk($id);
 
-        if($run)
+        if ($run)
         {
             redirect(base_url('admin/produk'));
         }
@@ -128,7 +134,7 @@ class Admin extends CI_Controller
         );
 
         // Logic kalo foto ada
-        if($this->input->post('foto') != null)
+        if ($this->input->post('foto') != null)
         {
             $img = $this->input->post('foto');
             $this->delete($this->input->post('currFoto'));
@@ -139,7 +145,7 @@ class Admin extends CI_Controller
 
         $run = $this->AdminModel->set_produk($id, $data);
 
-        if($run)
+        if ($run)
         {
             redirect(base_url('admin/produk'));
         }
@@ -172,32 +178,24 @@ class Admin extends CI_Controller
     private function upload($img)
     {
         $img = explode(';', $img);
-        $img = explode(',',$img[1]);
+        $img = explode(',', $img[1]);
 
         $img = base64_decode($img[1]);
 
-        $imgname = time().'.png';
+        $imgname = time() . '.png';
 
         // var_dump(FCPATH.'assets\\upload\\');
         // return;
-        file_put_contents(FCPATH.'assets\\uploads\\'.$imgname, $img);
+        file_put_contents(FCPATH . 'assets\\uploads\\' . $imgname, $img);
         return $imgname;
     }
 
     private function delete($name)
     {
-        unlink(FCPATH.'assets\\uploads\\'.$name);
+        unlink(FCPATH . 'assets\\uploads\\' . $name);
     }
 
-    /**
-     * Logout
-     */
-    public function logout()
-    {
-        $this->session->sess_destroy();
-        $this->session->set_tempdata('pesan', 'Berhasil keluar!.', 3);
-        redirect(base_url());
-    }
+
 
     public function accorder($param)
     {
@@ -224,7 +222,7 @@ class Admin extends CI_Controller
         $this->load->view('admin/template/header', $data);
         $this->load->view('admin/template/sidebar');
         $this->load->view('admin/template//navbar');
-        $this->load->view('admin/pesanan_detail',$data);
+        $this->load->view('admin/pesanan_detail', $data);
         $this->load->view('admin/template/footer');
     }
 
