@@ -1,3 +1,19 @@
+<div class="toast-container position-fixed top-0 start-0 p-3" style="z-index: 20000">
+    <?= validation_errors() ?>
+    <?php if ($this->session->tempdata('pesan') != NULL) : ?>
+        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-info text-white">
+                <strong class="me-auto">Kedai Seuhah</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <?= $this->session->tempdata('pesan') ?>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script> -->
 <script src="<?= base_url('assets/js/croppie.js') ?>"></script>
@@ -59,7 +75,28 @@
         // Icon Badge
         $('#totalBayar').html(new Intl.NumberFormat('de-DE').format(res['total']));
     }
+
+    function notif(param) {
+        var session = param;
+        var html =
+            `<div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">` +
+            `<div class="toast-header bg-info text-white">` +
+            `<strong class="me-auto">Kedai Seuhah</strong>` +
+            `<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>` +
+            `</div>` +
+            `<div class="toast-body">` +
+            session.pesan +
+            `</div>` +
+            `</div>`;
+        $('.toast-container').html(html);
+        $('.toast').toast('show');
+        console.log(html);
+    }
     $(document).ready(function() {
+
+        $('.toast').toast('show', {
+            delay: 200
+        });
 
         $(document).on('click', '.delitem', function() {
             var rowid = $(this).data('row');
@@ -75,6 +112,7 @@
                     // console.log(JSON.parse(data));
 
                     load(res);
+                    notif(res);
                 }
             });
         });
@@ -94,6 +132,7 @@
                     res = JSON.parse(data);
                     // console.log(JSON.parse(data));
                     load(res);
+                    notif(res);
                 }
             });
         });
@@ -102,7 +141,7 @@
             var qyt = $(this).data('qyt');
 
             $.ajax({
-                url: "<?= base_url('keranjang/plus') ?>",
+                url: "<?= base_url('keranjang/min') ?>",
                 method: "POST",
                 data: {
                     row_id: rowid,
@@ -112,6 +151,7 @@
                     res = JSON.parse(data);
                     // console.log(JSON.parse(data));
                     load(res);
+                    notif(res);
                 }
             });
         });
@@ -147,11 +187,13 @@
                     res = JSON.parse(data);
                     // console.log(JSON.parse(data));
                     load(res);
+                    notif(res);
+
                 }
             });
         });
 
-        
+
     });
 </script>
 </body>

@@ -67,7 +67,11 @@
                         <div class="profile-cover rounded-top" data-background="https://appsrv1-147a1.kxcdn.com/volt-dashboard/img/profile-cover.jpg" style="background: url(&quot;https://appsrv1-147a1.kxcdn.com/volt-dashboard/img/profile-cover.jpg&quot;);"></div>
                         <div class="card-body pb-5">
                             <div class="fotouser mb-4">
+                            <?php if($user->foto == null ) :?>
+                                <img id="item-img-output" class="gambar rounded-circle img-fluid shadow" src="<?= base_url("assets/uploads/users/default.png") ?>">
+                            <?php else: ?>
                                 <img id="item-img-output" class="gambar rounded-circle img-fluid shadow" src="<?= base_url("assets/uploads/users/{$user->foto}") ?>">
+                            <?php endif;?>
                             </div>
                             <h4 class="h3">
                                 <?= $user->nama_depan ?> <?= $user->nama_belakang ?>
@@ -178,9 +182,7 @@
                         data = JSON.parse(data);
                         console.log(data.foto);
                         
-                        var url = "<?= base_url("assets/uploads/users/")?>" + data.foto
-                        $('#item-img-output').attr('src', url );
-                        $("#avatar").attr("src", url);
+                        location.reload();
                     }
                 });
                 $('#cropImagePop').modal('hide');

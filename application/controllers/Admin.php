@@ -195,6 +195,43 @@ class Admin extends CI_Controller
     public function logout()
     {
         $this->session->sess_destroy();
+        $this->session->set_tempdata('pesan', 'Berhasil keluar!.', 3);
         redirect(base_url());
+    }
+
+    public function accorder($param)
+    {
+        $this->session->set_tempdata('pesan', 'Pesanan sudah berhasil diverifikasi!', 2);
+        $this->AdminModel->set_invoice_stat($param, array('status' => 2));
+        redirect('admin/pesanan');
+    }
+
+    public function rejorder($param)
+    {
+        $this->session->set_tempdata('pesan', 'Pesanan sudah berhasil ditolak!', 3);
+        $this->AdminModel->set_invoice_stat($param, array('status' => 3));
+        redirect('admin/pesanan');
+    }
+
+    public function orderdetail($param)
+    {
+        $data = array(
+            'title' => 'Detail Pesanan',
+            'pesanan' => $this->AdminModel->get_invoice_bynotrans($param)->result(),
+            'id' => $param
+        );
+
+        $this->load->view('admin/template/header', $data);
+        $this->load->view('admin/template/sidebar');
+        $this->load->view('admin/template//navbar');
+        $this->load->view('admin/pesanan_detail',$data);
+        $this->load->view('admin/template/footer');
+    }
+
+    public function userdelete($param)
+    {
+        $this->AdminModel->del_user($param);
+        $this->session->set_tempdata('pesan', 'User berhasil dihapus!', 3);
+        redirect('admin/users');
     }
 }

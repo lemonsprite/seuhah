@@ -20,6 +20,6 @@
                 Rp <span id="totalBayar"> 9.999.999</span>
             </div>
         </div>
-        <button class="btn btn-primary mt-4 btn-block">Selesaikan Pembayaran</button>
+        <a class="btn btn-primary mt-4 btn-block" href="<?php echo base_url('checkout'); ?>">Selesaikan Pembayaran</a>
     </div>
 </div>

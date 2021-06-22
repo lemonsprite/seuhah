@@ -7,9 +7,13 @@
         <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
             <li class="dropdown">
                 <a href="javascript:void(0)" data-bs-toggle="dropdown" class="nav-link dropdown-toggle" aria-expanded="false">
-                    <div class="d-none d-md-block d-lg-inline-block me-3">Hi, <?= $user->nama_depan ?> <?= $user->nama_belakang ?></div>
+                    <div class="d-none d-md-block d-lg-inline-block me-3">Hi, <?= $this->session->nama ?></div>
                     <div class="avatar avatar-lg me-1">
-                        <img class="shadow-sm" src="<?= base_url("assets/uploads/users/{$this->session->foto}") ?>">
+                        <?php if ($this->session->foto == null) : ?>
+                            <img id="avatar" class="rounded-circle d-flex" src="<?= base_url("assets/uploads/users/default.png") ?>">
+                        <?php else : ?>
+                            <img id="avatar" class="rounded-circle d-flex" src="<?= base_url("assets/uploads/users/{$this->session->foto}") ?>">
+                        <?php endif; ?>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">

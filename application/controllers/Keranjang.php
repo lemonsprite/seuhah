@@ -13,7 +13,7 @@ class Keranjang extends CI_Controller
             'qty' => $this->input->post('qyt')
         );
         $this->cart->insert($data);
-
+        $this->session->set_tempdata('pesan', 'Item berhasil ditambahkan!', 3);
         $this->load();
 
     }
@@ -41,8 +41,10 @@ class Keranjang extends CI_Controller
         $data = array(
             'count' => count($this->cart->contents()),
             'data' => $this->cart->contents(),
-            'total' => $this->cart->total()
+            'total' => $this->cart->total(),
+            'pesan' => $this->session->tempdata('pesan')
         );
+        
         echo json_encode($data);
     }
 
@@ -53,6 +55,7 @@ class Keranjang extends CI_Controller
             'qty' => 0
         );
         $this->cart->update($data);
+        $this->session->set_tempdata('pesan', 'Item berhasil dihapus!', 3);
         $this->load();
     }
     public function plus()
@@ -62,6 +65,7 @@ class Keranjang extends CI_Controller
             'qty' => $this->input->post('qty')
         );
         $this->cart->update($data);
+        $this->session->set_tempdata('pesan', 'Item berhasil ditambahkan!', 3);
         $this->load();
     }
     public function min()
@@ -71,6 +75,7 @@ class Keranjang extends CI_Controller
             'qty' => $this->input->post('qty')
         );
         $this->cart->update($data);
+        $this->session->set_tempdata('pesan', 'Item berhasil dikurangi!', 3);
         $this->load();
     }
 }
