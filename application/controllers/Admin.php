@@ -186,13 +186,13 @@ class Admin extends CI_Controller
 
         // var_dump(FCPATH.'assets\\upload\\');
         // return;
-        file_put_contents(FCPATH . 'assets\\uploads\\' . $imgname, $img);
+        file_put_contents(FCPATH . 'assets/uploads/' . $imgname, $img);
         return $imgname;
     }
 
     private function delete($name)
     {
-        unlink(FCPATH . 'assets\\uploads\\' . $name);
+        unlink(FCPATH . 'assets/uploads/' . $name);
     }
 
 

@@ -139,13 +139,13 @@ class Home extends CI_Controller
 
         // var_dump(FCPATH.'assets\\upload\\');
         // return;
-        file_put_contents(FCPATH . 'assets\\uploads\\users\\' . $imgname, $img);
+        file_put_contents(FCPATH . 'assets/uploads/users/' . $imgname, $img);
         return $imgname;
     }
 
     private function del_userimage($name)
     {
-        $file = FCPATH . 'assets\\uploads\\users\\' . $name;
+        $file = FCPATH . 'assets/uploads/users/' . $name;
         if (file_exists($file))
             unlink($file);
     }
