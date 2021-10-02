@@ -1,6 +1,6 @@
 <div class="page-title">
     <h3>Users</h3>
-    <p class="text-subtitle text-muted">Tampilan pengelolaan users</p>
+    <p class="text-subtitle text-muted">Tampilan pengelolaan Users</p>
 </div>
 <section class="section">
   

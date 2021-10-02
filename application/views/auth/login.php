@@ -97,6 +97,7 @@
     <script src="<?= base_url('assets/js/main.js') ?>"></script>
 </body>
 <script>
+    /** Toass Notif Init */
     $(document).ready(function() {
         $('.toast').toast('show', {
             delay: 200
