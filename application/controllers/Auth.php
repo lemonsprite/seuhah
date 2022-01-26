@@ -61,7 +61,10 @@ class Auth extends CI_Controller
 
                         $this->session->set_tempdata('pesan', 'Login berhasil!.', 3);
                         if ($this->session->status == TRUE)
-                            redirect('home');
+                            if($this->session->role == 1)
+                                redirect('admin');
+                            else
+                                redirect('home');
                     }
                     else
                     {

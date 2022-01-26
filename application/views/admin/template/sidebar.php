@@ -2,6 +2,7 @@
     <div class="sidebar-wrapper active">
         <div class="sidebar-header">
             Kedai Seuhah
+            <a href="<?= base_url('home') ?>" class="btn btn-outline-primary">Lihat Toko</a>
         </div>
         <div class="sidebar-menu">
             <ul class="menu">

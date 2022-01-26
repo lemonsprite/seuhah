@@ -117,23 +117,15 @@
                                 margin-left: 0;
                             }
                         </style>
-                        <ul class="daftaranggota mb-3" style="list-style: none; margin: 0; padding: 0; display: flex;">
-                            <li><a href="/">Acep Ghifar</a></li>
-                            <li><a href="/">Fadhila Akbar</a></li>
-                            <li><a href="/">Fajar Muharam</a></li>
-                            <li><a href="/">R. Noor Alfath</a></li>
-                            <li><a href="/">Ryaz Azhari</a></li>
-                        </ul>
                         <div class="text-sm mt-4">
                             Copyright &copy;
                             <script>
                                 let x = new Date();
                                 document.write(x.getFullYear());
-                            </script> Kelompok 8 (12.4B.17)
+                            </script> Noor Alfath
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <h3 class="m-0 text-white">Web Programming III</h3>
                         <span>12.4B.17 - UBSI Tasikmalaya</span>
                         <div class="sosial pt-3">
                             <a href="https://www.instagram.com/ubsi_tasikmalaya/" class="text-white me-3">
